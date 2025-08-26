@@ -1,8 +1,53 @@
+/* Design Tokens - Following Next.js/Vercel recommendations */
 :root {
-  /* --font-nunito: DMSans;
-  --font-firaCode: FiraCode; */
-
+  /* =================================
+     COLORS - Neutral Palette
+     ================================= */
   
-}
+  /* Neutral Colors */
+  --color-neutral-900: #163A34; /* Primary text, dark backgrounds */
+  --color-neutral-600: #395852; /* Secondary text, dark elements */
+  --color-neutral-300: #D0DCD9; /* Light borders, subtle backgrounds */
+  --color-neutral-200: #E0E6E3; /* Card backgrounds, light borders */
+  --color-neutral-100: #F6F5F1; /* Page backgrounds, lightest elements */
+  --color-neutral-0: #FFFFFF;   /* Pure white, cards, overlays */
 
+  /* =================================
+     COLORS - Brand Palette
+     ================================= */
+  
+  /* Primary Brand (Teal) */
+  --color-primary-500: #49AC9B; /* Primary buttons, links, highlights */
+  
+  /* Accent Colors */
+  --color-accent-orange: #FE9F6B; /* Icons, highlights, warm accents */
+  --color-accent-indigo: #697DDB; /* Secondary actions, cool accents */
+
+  /* =================================
+     SEMANTIC COLOR ASSIGNMENTS
+     ================================= */
+  
+  /* Text Colors */
+  --color-text-primary: var(--color-neutral-900);
+  --color-text-secondary: var(--color-neutral-600);
+  --color-text-tertiary: var(--color-neutral-300);
+  --color-text-inverse: var(--color-neutral-0);
+  
+  /* Background Colors */
+  --color-background-primary: var(--color-neutral-0);
+  --color-background-secondary: var(--color-neutral-100);
+  --color-background-tertiary: var(--color-neutral-200);
+  
+  /* Interactive Colors */
+  --color-button-primary-bg: var(--color-primary-500);
+  --color-button-primary-text: var(--color-neutral-0);
+  --color-button-secondary-bg: var(--color-neutral-200);
+  --color-button-secondary-text: var(--color-neutral-900);
+  
+  /* Border Colors */
+  --color-border-light: var(--color-neutral-200);
+  --color-border-medium: var(--color-neutral-300);
+  --color-border-dark: var(--color-neutral-600);
+
+}
 
