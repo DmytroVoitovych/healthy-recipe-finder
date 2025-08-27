@@ -1,0 +1,26 @@
+.mainLogo {
+  width: 27px;
+  height: 32px;
+
+  @media (min-width: $sm) {
+    width: 33px;
+    height: 40px;
+  }
+}
+
+.linkLogo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-family: var(--font-recoleta-semibold);
+  font-size:16px;
+  line-height: 1.4;
+  color:var(--color-text-primary); 
+    
+
+  @media (min-width: $sm) {
+    gap: 10px;
+    font-size: 20px;
+  }
+}
