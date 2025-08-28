@@ -3,6 +3,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 16px;
+  border: 1px solid var(--color-border-medium);
 }
 
 .header[data-menu="false"] + * nav {
@@ -14,7 +15,7 @@
     opacity 250ms ease-in-out,
     display 250ms allow-discrete;
 
-  @media (max-width: 639.9px) {
+  @media (max-width: 1023.9px) {
     @starting-style {
       height: auto;
       opacity: 1;
@@ -31,7 +32,7 @@
     opacity 250ms ease-in-out,
     display 249ms allow-discrete;
 
-  @media (min-width: 640px) {
+  @media (min-width: $lg) {
     display: none;
   }
 
@@ -50,19 +51,17 @@
 }
 
 .header[data-menu="true"] .menuButton {
-  padding: 10px;
-  border-radius: 10px;
-  background-color: var(--bg-btn-menu);
-  stroke: var(--txt-btn-menu);
+
 }
 
 .menuButton {
   display: flex;
   align-items: center;
-  stroke: var(--txt-main);
-  margin-right: 16px;
+  padding: 12px;
+  border-radius: 4px;
+  background-color:  var(--color-button-menu-bg);
 
-  @media (min-width: 640px) {
+  @media (min-width: $lg) {
     display: none;
   }
 }

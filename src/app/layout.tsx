@@ -43,7 +43,9 @@ export default function RootLayout({
       <body className={`${nunito.variable} ${nunitoSans.variable} ${recoleta.variable}`}>
         <div className="wrapper">
         <Header />
+        <main>
         {children}
+        </main>
         </div>
       </body>
     </html>

@@ -43,6 +43,7 @@
   --color-button-primary-text: var(--color-neutral-0);
   --color-button-secondary-bg: var(--color-neutral-200);
   --color-button-secondary-text: var(--color-neutral-900);
+  --color-button-menu-bg: var(--color-neutral-300);
 
   /* Border Colors */
   --color-border-light: var(--color-neutral-200);

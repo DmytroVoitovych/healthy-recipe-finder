@@ -2,7 +2,6 @@
 @import url(../styles/reset.css);
 @import url(../styles/reuse.css);
 
-
 html,
 body {
   max-width: 100vw;
@@ -17,7 +16,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+}
 
-
-
-
+main{
+flex-grow: 1;
+padding:0 16px;  
+}

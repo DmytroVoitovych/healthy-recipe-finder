@@ -1,28 +1,33 @@
 "use client";
 import styles from "./Header.module.css";
-// import { ThemeSwitcher } from "./temeSwitcher/ThemeSwitcher";
+
 // import { NavComponent } from "./navComponent/NavComponent";
-// import { Close, Menu } from "@/utils/svglist";
+
 import { useState } from "react";
 import { Logo } from "../logo/Logo";
+import { HamburgerMenu } from "@/utils/svgimports";
 
 const Header = () => {
   const [show, setShow] = useState<boolean>(false);
 
+  const toggleMenu = () => setShow((prev) => !prev);
+
   return (
     <header className={styles.header} data-menu={show}>
-    <Logo/>
+      <Logo />
 
       <div className={styles.rightBlock}>
-        {/* <NavComponent mobile={false} /> */}
         <button
           type="button"
           className={styles.menuButton}
-          onClick={() => setShow((prev) => !prev)}
+          onClick={toggleMenu}
+          aria-label={show ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={show}
+          aria-controls="navigation"
         >
-          {/* {show ? <Close /> : <Menu />} */}
+          <HamburgerMenu />
         </button>
-        {/* <ThemeSwitcher /> */}
+        {/* <NavComponent mobile={false} /> */}
       </div>
     </header>
   );
