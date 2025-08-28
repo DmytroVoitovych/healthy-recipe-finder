@@ -39,15 +39,30 @@
   --color-background-tertiary: var(--color-neutral-200);
 
   /* Interactive Colors */
-  --color-button-primary-bg: var(--color-primary-500);
+  --color-button-primary-bg: var(--color-neutral-900);
   --color-button-primary-text: var(--color-neutral-0);
   --color-button-secondary-bg: var(--color-neutral-200);
   --color-button-secondary-text: var(--color-neutral-900);
   --color-button-menu-bg: var(--color-neutral-300);
+  --color-button-bg-hover: var(--color-neutral-600);
 
   /* Border Colors */
   --color-border-light: var(--color-neutral-200);
   --color-border-medium: var(--color-neutral-300);
   --color-border-dark: var(--color-neutral-600);
-  
-}
+  --color-border-focus: var(--color-neutral-900);
+
+  /* Shadows */
+  --shadow-menu: 0 12px 22px -12px var(--color-neutral-600);
+
+  --container-padding:16px;
+
+  @media (min-width: $md) {
+  --container-padding: 32px;  
+  }
+
+  @media (min-width: $xxl) {
+  --container-padding: 60px;  
+  }
+  }
+

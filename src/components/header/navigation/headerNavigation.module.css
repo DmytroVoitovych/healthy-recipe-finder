@@ -1,0 +1,62 @@
+.navBlock {
+  --padding-top: 12px;
+  --padding-left: 8px;
+
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: var(--color-text-primary);
+
+  @media (min-width: $lg) {
+    --padding-top: 0px;
+    --padding-left: 0px;
+
+    flex-direction: unset;
+    margin: auto;
+  }
+
+  & a {
+    padding: var(--padding-top) var(--padding-left);
+    position: relative;
+
+    @media (min-width: $lg) {
+      &:not(:last-child) {
+        margin-right: 40px;
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-border-focus);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+  }
+
+  & a.activeLink::after {
+    --underline-width: calc(100% - (var(--padding-left) * 2));
+
+    content: "";
+    position: absolute;
+    bottom: var(--padding-top);
+    left: var(--padding-left);
+    width: var(--underline-width);
+    height: 3px;
+    border-radius: 3px;
+    background-color: var(--color-accent-orange);
+  }
+
+  @media (hover: hover) {
+    a:not(.activeLink):hover::after {
+      --underline-width: calc(100% - (var(--padding-left) * 2));
+
+      content: "";
+      position: absolute;
+      bottom: var(--padding-top);
+      left: var(--padding-left);
+      width: var(--underline-width);
+      height: 3px;
+      border-radius: 3px;
+      background-color: var(--color-accent-orange);
+    }
+  }
+}

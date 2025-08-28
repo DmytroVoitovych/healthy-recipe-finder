@@ -1,11 +1,12 @@
 "use client";
-import styles from "./Header.module.css";
-
-// import { NavComponent } from "./navComponent/NavComponent";
-
+import styles from "./header.module.css";
 import { useState } from "react";
 import { Logo } from "../logo/Logo";
 import { HamburgerMenu } from "@/utils/svgimports";
+import { HeaderNavigation } from "./navigation/HeaderNavigation";
+import { ButtonAsLink } from "../shared/ButtonAsLink";
+
+const buttonContent = 'Browse recipes';
 
 const Header = () => {
   const [show, setShow] = useState<boolean>(false);
@@ -27,7 +28,10 @@ const Header = () => {
         >
           <HamburgerMenu />
         </button>
-        {/* <NavComponent mobile={false} /> */}
+        <div className={styles.navContainer} >
+        <HeaderNavigation isVisible={show}/>
+        <ButtonAsLink content={buttonContent} stylesClass={styles.navBtn}  />
+        </div>
       </div>
     </header>
   );
