@@ -28,3 +28,5 @@
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts","next.config.js", "svgr.d.ts"],
   "exclude": ["node_modules"]
 }
+
+/// <reference types="@testing-library/jest-dom" />

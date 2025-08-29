@@ -3,7 +3,7 @@ import Link from "next/link";
 import styles from "./headerNavigation.module.css";
 import { usePathname } from "next/navigation";
 
-type menuVisibility = {
+export type menuVisibility = {
  isVisible: boolean;   
 }
 
