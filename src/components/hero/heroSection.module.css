@@ -1,0 +1,100 @@
+.sectionHero {
+  text-align: left;
+
+  @media (min-width: $lg) {
+    text-align: center;
+  }
+}
+
+.heroHeading {
+  margin-bottom: 16px;
+  color: var(--color-text-primary);
+
+  & > strong {
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 13px;
+      left: 0;
+      width: 100%;
+      height: 23px;
+      border-radius: 4px;
+      opacity: 0.4;
+      background-color: var(--color-accent-orange);
+      z-index: -1;
+
+      @media (min-width: $sm) {
+        height: 29px;
+      }
+
+      @media (min-width: $lg) {
+        height: 39px;
+      }
+    }
+  }
+
+  & + p {
+    margin-bottom: 32px;
+
+    @media (min-width: $lg) {
+      max-width: 580px;
+      margin-left: auto;
+      margin-right: auto;
+      text-wrap-style: balance;
+    }
+  }
+}
+
+.heroButton {
+  padding: 16px 32px;
+  margin-bottom: 40px;
+  border-radius: 10px;
+  font-family: var(--font-nunito);
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.4;
+  letter-spacing: -0.5px;
+}
+
+.heroImage {
+  display: block;
+  position: relative;
+
+  & > img {
+    border-radius: 12px;
+    box-shadow: var(--shadow-img);
+    background-color: var(--color-background-primary);
+    aspect-ratio: 16 / 9;
+    max-height: 600px;
+
+    @media (min-width: $xxxl) {
+      max-height: unset;
+      aspect-ratio: 16 / 7;
+    }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    background-image: url(/pattern-squiggle-1.svg);
+    background-repeat: no-repeat;
+    width: calc(100vw + 8% + var(--container-padding));
+    height: 100%;
+    background-size: 100%;
+    background-attachment: fixed;
+    background-position: center center;
+    position: absolute;
+    transform: rotate(-12deg);
+    transform-origin: center center;
+    top: -30%;
+    left: calc(0px - var(--container-padding) - 2%);
+    z-index: -1;
+    transform: rotate(-12deg);
+
+    @media (min-width:$xl){
+      left: calc(0px - var(--container-padding) - 36px - 1.5%);  
+      transform: rotate(-9deg);
+    }
+  }
+}

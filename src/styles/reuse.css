@@ -1,17 +1,17 @@
 .text-preset-1 {
   font-family: var(--font-nunito), sans-serif;
   font-weight: 800; /* ExtraBold */
-  font-size: 72px;
-  line-height: 1.1; /* 110% */
-  letter-spacing: -2px;
-}
-
-.text-preset-1-mobile {
-  font-family: var(--font-nunito), sans-serif;
-  font-weight: 800; /* ExtraBold */
   font-size: 52px;
   line-height: 1.1; /* 110% */
   letter-spacing: -2px;
+
+  @media (min-width: $sm) {
+    font-size: 64px;
+  }
+
+  @media (min-width: $lg) {
+    font-size: 72px;
+  }
 }
 
 .text-preset-2 {
@@ -93,5 +93,3 @@
   line-height: 1.5; /* 150% */
   letter-spacing: -0.3px;
 }
-
-

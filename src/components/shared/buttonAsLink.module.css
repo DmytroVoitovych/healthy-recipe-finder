@@ -1,4 +1,5 @@
 .btnConstant {
+  display: inline-block;
   color: var(--color-button-primary-text);
   background-color: var(--color-button-primary-bg);
   text-align: center;

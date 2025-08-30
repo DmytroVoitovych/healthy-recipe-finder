@@ -1,9 +1,10 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
   /* config options here */
 
-   webpack(config) {
+  webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
       use: [
@@ -18,12 +19,19 @@ const nextConfig: NextConfig = {
     return config;
   },
 
-   turbopack: {
+  images: {
+    qualities: [75, 80, 85],
+  },
+
+  turbopack: {
     rules: {
-      '*.svg': {
-        loaders: ['@svgr/webpack'],
-        as: '*.ts',
+      "*.svg": {
+        loaders: ["@svgr/webpack"],
+        as: "*.ts",
       },
+    },
+     resolveAlias: {
+      '@Images': path.resolve(__dirname, './src/app/assets/images'),
     },
   },
 };

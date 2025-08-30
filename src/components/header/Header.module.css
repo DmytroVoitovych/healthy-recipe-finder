@@ -78,6 +78,7 @@
   position: absolute;
   left: var(--container-padding);
   right: var(--container-padding);
+  z-index: 999;
 
   @media (min-width: $lg) {
     position: unset;

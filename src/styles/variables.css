@@ -54,6 +54,7 @@
 
   /* Shadows */
   --shadow-menu: 0 12px 22px -12px var(--color-neutral-600);
+  --shadow-img: 0 0 0 3.5px var(--color-background-primary);
 
   --container-padding:16px;
 
