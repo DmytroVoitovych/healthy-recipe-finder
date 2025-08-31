@@ -1,0 +1,71 @@
+.sectionRealLife {
+  display: grid;
+  gap: 32px;
+
+  @media (min-width: $sm) {
+    gap: 40px;
+  }
+
+  @media (min-width: $lg) {
+    place-items: center;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+}
+
+.RealLifeHeading {
+  color: var(--color-text-primary);
+  margin-bottom: 20px;
+
+  @media (min-width:1920px){
+  & ~ p{
+  text-wrap-style: balance;  
+  }  
+  }
+
+  & + p {
+    margin-bottom: 20px;
+  }
+
+  & + p > time {
+    display: inline-block;
+    position: relative;
+
+    @media (min-width: $sm) {
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 6px;
+        left: 0;
+        width: 100%;
+        height: 10px;
+        border-radius: 3px;
+        background-color: var(--color-accent-orange);
+        z-index: -1;
+
+        @media (min-width: $lg) {
+          height: 12px;
+        }
+      }
+    }
+  }
+}
+
+.realLifeImage {
+  border-radius: 10px;
+  overflow: hidden;
+
+  @media (min-width: $sm) {
+    border-radius: 18px;
+  }
+
+  @media (min-width: $lg) {
+    width: 100%;
+    border-radius: 16px;
+  }
+
+  & > img {
+    aspect-ratio: 4 / 3;
+    max-height: 500px;
+  }
+}

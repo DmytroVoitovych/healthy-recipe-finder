@@ -2,7 +2,7 @@ import { FC } from "react";
 import { getImageProps } from "next/image";
 
 
-interface ArtDirectionImageProps {
+export interface ArtDirectionImageProps {
   className: string;
   altContent: string;
   srcDescJpg: string;
@@ -86,7 +86,7 @@ const ArtDirectionImageBanner: FC<ArtDirectionImageProps> = ({
   } = getImageProps({
     ...common,
     width: 750,
-    height: 1334,
+    height: 400,
     quality: 75,
     src: srcMobileJpg, // ← fallback
   });
@@ -104,7 +104,7 @@ const ArtDirectionImageBanner: FC<ArtDirectionImageProps> = ({
       <source media="(min-width: 1200px)" srcSet={desktop} type="image/webp" />
       <source media="(min-width: 640px) and (max-width: 1199px)" srcSet={tablet} />
       <source media="(max-width: 639.9px)" srcSet={mobile} />
-      <img {...rest} style={{ width: "100%", height: "auto" }} />
+      <img {...rest} style={{ width: "100%", height: "auto" }} fetchPriority = "high"  />
     </picture>
   );
 };
