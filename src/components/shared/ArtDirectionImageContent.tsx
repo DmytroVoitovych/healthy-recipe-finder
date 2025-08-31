@@ -29,7 +29,7 @@ const ArtDirectionImageContent: FC<ArtDirectionImageProps> = ({
 
   // Desktop fallback
   const {
-    props: { srcSet: desktop },
+    props: { srcSet: desktop, ...rest  },
   } = getImageProps({
     ...common,
     width: 1200,
@@ -71,7 +71,7 @@ const ArtDirectionImageContent: FC<ArtDirectionImageProps> = ({
 
   // Mobile fallback
   const {
-    props: { srcSet: mobile, ...rest },
+    props: { srcSet: mobile, },
   } = getImageProps({
     ...common,
     width: 600,

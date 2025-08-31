@@ -1,0 +1,48 @@
+.callToActionSection {
+  & > div {
+    padding: 48px 16px;
+    border-radius: 16px;
+    text-align: center;
+    background-color: #e9ede8;
+
+    @media (min-width: $sm) {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+
+    @media (min-width: $md) {
+      background-image: url(/pattern-fork.svg), url(/pattern-knife.svg);
+      background-repeat: no-repeat;
+      background-size: 157px 199px, 172px 172px;
+      background-position: -4% 107%, 104% -27%;
+    }
+
+    @media (min-width: $xl) {
+      padding-top: 96px;
+      padding-bottom: 96px;
+      background-size: auto;
+      background-position: -8% 22px, 111% -11%;
+    }
+  }
+
+  & h1 {
+    margin-bottom: 12px;
+  }
+
+  & p {
+    margin-bottom: 32px;
+
+    @media (min-width: $sm) {
+      margin-bottom: 40px;
+    }
+  }
+}
+
+.callToActionButton {
+  padding: 16px 24px;
+  border-radius: 10px;
+
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.4;
+}
