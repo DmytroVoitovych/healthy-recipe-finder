@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
 import { Header } from "@/components/header/Header";
+import { Footer } from "@/components/footer/Footer";
 
 const nunitoSans = localFont({
   src: [
@@ -46,6 +47,7 @@ export default function RootLayout({
         <main>
         {children}
         </main>
+        <Footer/>
         </div>
       </body>
     </html>

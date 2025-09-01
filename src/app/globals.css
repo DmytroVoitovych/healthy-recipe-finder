@@ -34,6 +34,31 @@ main {
   }
 }
 
+footer {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-direction: column;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+  padding-top: 32px;
+  padding-bottom: 20px;
+
+  @media (min-width:$sm){
+  padding-top: 40px;  
+  padding-bottom: 40px;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  }
+
+  @media (min-width: $xl) {
+    --container-padding-extra: calc(var(--container-padding) + 36px);
+
+    padding-left: var(--container-padding-extra);
+    padding-right: var(--container-padding-extra);
+  }
+}
+
 .sectionTop {
   position: relative;
 
