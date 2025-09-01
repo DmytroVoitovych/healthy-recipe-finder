@@ -36,6 +36,7 @@ const ArtDirectionImageBanner: FC<ArtDirectionImageProps> = ({
     height: 800,
     quality: 85,
     src: srcDescWebP, // WebP 
+    priority:true
   });
 
   // Desktop fallback
@@ -104,7 +105,7 @@ const ArtDirectionImageBanner: FC<ArtDirectionImageProps> = ({
       <source media="(min-width: 1200px)" srcSet={desktop} type="image/webp" />
       <source media="(min-width: 640px) and (max-width: 1199px)" srcSet={tablet} />
       <source media="(max-width: 639.9px)" srcSet={mobile} />
-      <img {...rest} style={{ width: "100%", height: "auto" }} fetchPriority = "high"  />
+      <img {...rest} style={{ width: "100%", height: "auto", objectFit:'cover' }} fetchPriority = "high"  loading='eager' />
     </picture>
   );
 };

@@ -95,7 +95,7 @@ const ArtDirectionImageContent: FC<ArtDirectionImageProps> = ({
       <source media="(max-width: 639.9px)" srcSet={mobile} />
       <img
         {...rest}
-        style={{ width: "100%", height: "auto" }}
+        style={{ width: "100%", height: "auto", objectFit:'cover' }}
         loading='lazy'
       />
     </picture>
