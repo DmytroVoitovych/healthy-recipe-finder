@@ -30,7 +30,7 @@ export const Footer = () => {
           </a>
         </li>
       </ul>
-      <span>Made with ❤️ and 🥑</span>
+      <span className="text-preset-9">Made with ❤️ and 🥑</span>
     </footer>
   );
 };

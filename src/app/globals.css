@@ -44,11 +44,11 @@ footer {
   padding-top: 32px;
   padding-bottom: 20px;
 
-  @media (min-width:$sm){
-  padding-top: 40px;  
-  padding-bottom: 40px;
-  flex-direction: row-reverse;
-  justify-content: space-between;
+  @media (min-width: $sm) {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    flex-direction: row-reverse;
+    justify-content: space-between;
   }
 
   @media (min-width: $xl) {
@@ -91,4 +91,55 @@ footer {
 
 .sectionTop:not(:first-child) {
   padding-top: 32px;
+}
+
+.aboutSectionTop ~ .sectionTop:last-child {
+  padding: 0;
+}
+
+.aboutSectionTop:first-child {
+  padding-top: 48px;
+  padding-bottom: 64px;
+
+  @media (min-width: $sm) {
+  padding-top: 64px;
+  padding-bottom: 80px;  
+  }
+
+  @media (min-width: $lg) {
+  padding-top: 80px;
+  padding-bottom: 96px;  
+  }
+}
+
+.aboutSectionTop {
+  position: relative;
+  padding: 48px 0;
+
+    @media (min-width: $sm) {
+  padding: 80px 0;
+  }
+
+  @media (min-width: $lg) {
+  padding: 96px 0;  
+  }
+
+  &.hasDivider::after {
+    content: "";
+    background-color: var(--color-border-medium);
+    width: calc(100% + (var(--container-padding) * 2));
+    height: 1px;
+    position: absolute;
+    bottom: 0;
+    left: calc(0px - var(--container-padding));
+    right: calc(0px - var(--container-padding));
+
+    @media (min-width: $xl) {
+      --container-padding-extra: calc(var(--container-padding) + 36px);
+
+      left: calc(0px - var(--container-padding-extra));
+      right: calc(0px - var(--container-padding-extra));
+      width: calc(100% + (var(--container-padding-extra) * 2));
+    }
+  }
 }

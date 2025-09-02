@@ -1,39 +1,105 @@
 import { FC } from "react";
 import { getImageProps } from "next/image";
-import smallImg from "@/assets/images/image-workspace-small.jpg";
-import largeImg from "@/assets/images/image-workspace-large.jpg";
+import { ArtDirectionImageProps } from "./ArtDirectionImageBanner";
 
-interface ArtDirectionImageProps {
-  className: string;
-}
-
-const ArtDirectionImage: FC<ArtDirectionImageProps> = ({ className }) => {
+const ArtDirectionImageSquare: FC<ArtDirectionImageProps> = ({
+  className,
+  altContent,
+  srcDescJpg,
+  srcDescWebP,
+  srcMobileJpg,
+  srcMobileWebP,
+  srcTabletJpg,
+  srcTabletWebP,
+}) => {
   const common = {
-    alt: "working room  with white table and computer",
+    alt: altContent,
     sizes: "auto",
   };
 
   const {
-    props: { srcSet: desktop },
+    props: { srcSet: desktopWebP },
   } = getImageProps({
     ...common,
-    src: largeImg,
+    width: 1200,
+    height: 1200,
+    quality: 85,
+    src: srcDescWebP, // WebP
+  });
+
+  // Desktop fallback
+  const {
+    props: { srcSet: desktop, ...rest },
+  } = getImageProps({
+    ...common,
+    width: 1200,
+    height: 1200,
+    quality: 85,
+    src: srcDescJpg, // fallback
   });
 
   const {
-    props: { srcSet: mobile, ...rest },
+    props: { srcSet: tabletWebP },
   } = getImageProps({
     ...common,
-    src: smallImg,
+    width: 800,
+    height: 800,
+    quality: 80,
+    src: srcTabletWebP,
+  });
+
+  const {
+    props: { srcSet: tablet },
+  } = getImageProps({
+    ...common,
+    width: 800,
+    height: 800,
+    quality: 80,
+    src: srcTabletJpg, // fallback
+  });
+
+  // Mobile WebP
+  const {
+    props: { srcSet: mobileWebP },
+  } = getImageProps({
+    ...common,
+    width: 600,
+    height: 600,
+    quality: 75,
+    src: srcMobileWebP, // WebP
+  });
+
+  // Mobile fallback
+  const {
+    props: { srcSet: mobile },
+  } = getImageProps({
+    ...common,
+    width: 600,
+    height: 600,
+    quality: 75,
+    src: srcMobileJpg, // ← fallback
   });
 
   return (
     <picture className={className}>
-      <source media="(min-width: 640px)" srcSet={desktop} />
+      <source media="(min-width: 1200px)" srcSet={desktopWebP} type="image/webp" />
+      <source
+        media="(min-width: 640px) and (max-width: 1199px)"
+        srcSet={tabletWebP}
+        type="image/webp"
+      />
+      <source media="(max-width: 639.9px)" srcSet={mobileWebP} type="image/webp" />
+
+      <source media="(min-width: 1200px)" srcSet={desktop} type="image/webp" />
+      <source media="(min-width: 640px) and (max-width: 1199px)" srcSet={tablet} />
       <source media="(max-width: 639.9px)" srcSet={mobile} />
-      <img {...rest} style={{ width: "100%", height: "auto" }} />
+      <img
+        {...rest}
+        style={{ width: "100%", height: "auto", objectFit: "cover" }}
+        
+      />
     </picture>
   );
 };
 
-export { ArtDirectionImage };
+export { ArtDirectionImageSquare };
