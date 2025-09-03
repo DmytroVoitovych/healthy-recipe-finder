@@ -102,13 +102,13 @@ footer {
   padding-bottom: 64px;
 
   @media (min-width: $sm) {
-  padding-top: 64px;
-  padding-bottom: 80px;  
+    padding-top: 64px;
+    padding-bottom: 80px;
   }
 
   @media (min-width: $lg) {
-  padding-top: 80px;
-  padding-bottom: 96px;  
+    padding-top: 80px;
+    padding-bottom: 96px;
   }
 }
 
@@ -116,12 +116,12 @@ footer {
   position: relative;
   padding: 48px 0;
 
-    @media (min-width: $sm) {
-  padding: 80px 0;
+  @media (min-width: $sm) {
+    padding: 80px 0;
   }
 
   @media (min-width: $lg) {
-  padding: 96px 0;  
+    padding: 96px 0;
   }
 
   &.hasDivider::after {
@@ -140,6 +140,62 @@ footer {
       left: calc(0px - var(--container-padding-extra));
       right: calc(0px - var(--container-padding-extra));
       width: calc(100% + (var(--container-padding-extra) * 2));
+    }
+  }
+}
+
+.aboutSectionTop.sectionExplanation {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  & :where(h1, h2) {
+    color: var(--color-text-primary);
+  }
+
+  @media (min-width: $lg) {
+    flex-direction: row;
+    /* align-items: baseline;  */
+    gap: 64;
+
+    & h1 {
+      width: 100%;
+    }
+  }
+
+  & > ul > li > h2 {
+    margin-bottom: 12px;
+    display: inline-block;
+    vertical-align: super;
+    padding-left: 12px;
+
+    @media (max-width: 374.9) {
+      font-size: larger;
+    }
+
+    @media (max-width: 319.9) {
+      font-size: medium;
+    }
+
+    & + p {
+      --standart-padding: 40px;
+      padding-left: calc(var(--standart-padding) + 12px);
+    }
+  }
+
+  & > ul {
+    display: grid;
+    gap: 24px;
+    width: 100%;
+    list-style-image: url(/icon-bullet-point.svg);
+    list-style-position: inside;
+
+    @media (min-width: $sm) {
+      gap: 32px;
+    }
+
+    @media (min-width: $lg) {
+      gap: 48px;
     }
   }
 }
