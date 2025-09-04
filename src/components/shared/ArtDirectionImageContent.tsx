@@ -29,7 +29,7 @@ const ArtDirectionImageContent: FC<ArtDirectionImageProps> = ({
 
   // Desktop fallback
   const {
-    props: { srcSet: desktop, ...rest  },
+    props: { srcSet: desktop, },
   } = getImageProps({
     ...common,
     width: 1200,
@@ -71,7 +71,7 @@ const ArtDirectionImageContent: FC<ArtDirectionImageProps> = ({
 
   // Mobile fallback
   const {
-    props: { srcSet: mobile, },
+    props: { srcSet: mobile,  ...rest  },
   } = getImageProps({
     ...common,
     width: 600,
@@ -79,6 +79,8 @@ const ArtDirectionImageContent: FC<ArtDirectionImageProps> = ({
     quality: 75,
     src: srcMobileJpg, // ← fallback
   });
+
+  const {src, ...base} = rest;
 
   return (
     <picture className={className}>
@@ -94,7 +96,8 @@ const ArtDirectionImageContent: FC<ArtDirectionImageProps> = ({
       <source media="(min-width: 640px) and (max-width: 1199px)" srcSet={tablet} />
       <source media="(max-width: 639.9px)" srcSet={mobile} />
       <img
-        {...rest}
+        {...base}
+        src={desktop}
         style={{ width: "100%", height: "auto", objectFit:'cover' }}
         loading='lazy'
       />

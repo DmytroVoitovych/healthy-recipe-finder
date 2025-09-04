@@ -2,7 +2,9 @@ import { FC } from "react";
 import { getImageProps } from "next/image";
 import { ArtDirectionImageProps } from "./ArtDirectionImageBanner";
 
-const ArtDirectionImageSquare: FC<ArtDirectionImageProps> = ({
+
+
+const ArtDirectionImageBannerLazy: FC<ArtDirectionImageProps> = ({
   className,
   altContent,
   srcDescJpg,
@@ -14,36 +16,37 @@ const ArtDirectionImageSquare: FC<ArtDirectionImageProps> = ({
 }) => {
   const common = {
     alt: altContent,
-    sizes: "auto",
+    sizes: "100vw",
   };
 
   const {
     props: { srcSet: desktopWebP },
   } = getImageProps({
     ...common,
-    width: 1200,
-    height: 1200,
+    width: 1920,
+    height: 800,
     quality: 85,
     src: srcDescWebP, // WebP
   });
 
   // Desktop fallback
   const {
-    props: { srcSet: desktop },
+    props: { srcSet: desktop},
   } = getImageProps({
     ...common,
-    width: 1200,
-    height: 1200,
+    width: 1920,
+    height: 800,
     quality: 85,
     src: srcDescJpg, // fallback
+    
   });
 
   const {
     props: { srcSet: tabletWebP },
   } = getImageProps({
     ...common,
-    width: 800,
-    height: 800,
+    width: 1024,
+    height: 400,
     quality: 80,
     src: srcTabletWebP,
   });
@@ -52,8 +55,8 @@ const ArtDirectionImageSquare: FC<ArtDirectionImageProps> = ({
     props: { srcSet: tablet },
   } = getImageProps({
     ...common,
-    width: 800,
-    height: 800,
+    width: 1024,
+    height: 400,
     quality: 80,
     src: srcTabletJpg, // fallback
   });
@@ -63,8 +66,8 @@ const ArtDirectionImageSquare: FC<ArtDirectionImageProps> = ({
     props: { srcSet: mobileWebP },
   } = getImageProps({
     ...common,
-    width: 600,
-    height: 600,
+    width: 750,
+    height: 400,
     quality: 75,
     src: srcMobileWebP, // WebP
   });
@@ -74,13 +77,13 @@ const ArtDirectionImageSquare: FC<ArtDirectionImageProps> = ({
     props: { srcSet: mobile, ...rest },
   } = getImageProps({
     ...common,
-    width: 600,
-    height: 600,
+    width: 750,
+    height: 400,
     quality: 75,
     src: srcMobileJpg, // ← fallback
   });
 
-  const { src, ...base } = rest;
+  const {src, ...base} = rest;
 
   return (
     <picture className={className}>
@@ -99,9 +102,10 @@ const ArtDirectionImageSquare: FC<ArtDirectionImageProps> = ({
         {...base}
         src={desktop}
         style={{ width: "100%", height: "auto", objectFit: "cover" }}
+        loading="lazy"
       />
     </picture>
   );
 };
 
-export { ArtDirectionImageSquare };
+export { ArtDirectionImageBannerLazy };

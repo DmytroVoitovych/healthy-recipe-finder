@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { getImageProps } from "next/image";
 
-
 export interface ArtDirectionImageProps {
   className: string;
   altContent: string;
@@ -35,13 +34,13 @@ const ArtDirectionImageBanner: FC<ArtDirectionImageProps> = ({
     width: 1920,
     height: 800,
     quality: 85,
-    src: srcDescWebP, // WebP 
-    priority:true
+    src: srcDescWebP, // WebP
+    priority: true,
   });
 
   // Desktop fallback
   const {
-    props: { srcSet: desktop, ...rest },
+    props: { srcSet: desktop },
   } = getImageProps({
     ...common,
     width: 1920,
@@ -78,12 +77,12 @@ const ArtDirectionImageBanner: FC<ArtDirectionImageProps> = ({
     width: 750,
     height: 400,
     quality: 75,
-    src: srcMobileWebP, // WebP 
+    src: srcMobileWebP, // WebP
   });
 
   // Mobile fallback
   const {
-    props: { srcSet: mobile,  },
+    props: { srcSet: mobile, ...rest },
   } = getImageProps({
     ...common,
     width: 750,
@@ -91,6 +90,8 @@ const ArtDirectionImageBanner: FC<ArtDirectionImageProps> = ({
     quality: 75,
     src: srcMobileJpg, // ← fallback
   });
+
+  const { src, ...base } = rest;
 
   return (
     <picture className={className}>
@@ -105,7 +106,13 @@ const ArtDirectionImageBanner: FC<ArtDirectionImageProps> = ({
       <source media="(min-width: 1200px)" srcSet={desktop} type="image/webp" />
       <source media="(min-width: 640px) and (max-width: 1199px)" srcSet={tablet} />
       <source media="(max-width: 639.9px)" srcSet={mobile} />
-      <img {...rest} style={{ width: "100%", height: "auto", objectFit:'cover' }} fetchPriority = "high"  loading='eager' />
+      <img
+        {...base}
+        src={desktop}
+        style={{ width: "100%", height: "auto", objectFit: "cover" }}
+        fetchPriority="high"
+        loading="eager"
+      />
     </picture>
   );
 };

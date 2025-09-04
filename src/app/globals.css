@@ -24,6 +24,10 @@ body {
   overflow-x: clip;
 }
 
+img{
+background-color: var(--color-background-tertiary);
+}
+
 main {
   flex-grow: 1;
   padding: 0 var(--container-padding);

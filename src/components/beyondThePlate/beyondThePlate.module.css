@@ -1,0 +1,43 @@
+.sectionBeyond {
+  display: grid;
+  gap: 32px;
+
+  @media (min-width: $sm) {
+    gap: 40px;
+  }
+
+  @media (min-width: $lg) {
+    place-items: center;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+
+  @media (min-width: $xl) {
+    grid-template-columns: 1fr 1.5fr;
+  }
+
+  & h1 {
+    color: var(--color-text-primary);
+    margin-bottom: 20px;
+  }
+
+  & p {
+    margin-bottom: 12px;
+  }
+
+  & ul {
+    list-style: unset;
+    margin-left: 28px;
+  }
+}
+
+.imgBeyond {
+  border-radius: 20px;
+  overflow: hidden;
+  width: 100%;
+
+  & > img {
+    aspect-ratio: 16 / 9;
+    max-height: 540px;
+  }
+}
