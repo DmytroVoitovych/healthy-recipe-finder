@@ -1,0 +1,26 @@
+.exploreSection {
+  padding: 48px 0;
+
+  @media (min-width: $lg) {
+
+    & > h1{
+     max-width: 765px;    
+    }
+
+    & > p{
+    max-width: 728px;    
+    }
+    
+    & :where(& > h1, & > p) {
+     text-align: center;
+     text-wrap-style: pretty;
+     margin-left: auto;
+     margin-right: auto;
+    }
+  }
+
+  & > h1 {
+    margin-bottom: 12px;
+    color: var(--color-text-primary);
+  }
+}

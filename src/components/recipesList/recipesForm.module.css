@@ -1,0 +1,84 @@
+.recipesListForm {
+  display: flex;
+
+  & [aria-haspopup="true"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--color-border-medium);
+    background-color: var(--color-background-primary);
+    anchor-name: --optionsButton;
+  }
+}
+
+.prepTimeRadioMenuContainer[popover="auto"] {
+  --width-for-small-devices: calc(100% - (var(--container-padding) * 2));
+  --popover-gap: 8px;
+
+  position: absolute;
+  position-anchor: --optionsButton;
+  top: calc(anchor(bottom) + var(--popover-gap));
+  left: anchor(left);
+  border-radius: 8px;
+  border: 1px solid var(--color-border-medium);
+  background-color: var(--color-background-primary);
+
+  width: var(--width-for-small-devices);
+  text-align: center;
+  padding: 8px;
+
+  @supports not (anchor-name: --optionsButton) {
+    top: calc(var(--bottom-coordinate) + var(--popover-gap));
+    left: var(--left-coordinate);
+  }
+
+  & fieldset {
+    display: grid;
+  }
+
+  & fieldset > label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+
+    & input {
+      appearance: none;
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      border: 1px solid currentColor;
+      transition: 0.2s all linear;
+      margin: 0;
+      width: 16px;
+      height: 16px;
+      position: relative;
+
+      &:checked {
+        border: 2px solid currentColor;
+      }
+
+      &:checked::after {
+        content: "";
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background-color: currentColor;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        translate: -50% -50%;
+        transition: 0.2s all linear;
+
+        @starting-style {
+          width: 2px;
+          height: 2px;
+        }
+      }
+    }
+  }
+}

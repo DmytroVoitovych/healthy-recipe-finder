@@ -6,5 +6,6 @@ import SearchFeatureIco from '@/app/assets/images/icon-search-in-seconds.svg';
 import InstagramIco from '@/app/assets/images/icon-instagram.svg';
 import TrueSocialeIco from '@/app/assets/images/icon-bluesky.svg';
 import TiktokIco from '@/app/assets/images/icon-tiktok.svg';
+import ArrowDownIco from '@/app/assets/images/icon-chevron-down.svg';
 
-export {MainLogo,HamburgerMenu,CarrotIco,FlashIco,SearchFeatureIco,InstagramIco,TrueSocialeIco,TiktokIco};
+export {MainLogo,HamburgerMenu,CarrotIco,FlashIco,SearchFeatureIco,InstagramIco,TrueSocialeIco,TiktokIco,ArrowDownIco};
