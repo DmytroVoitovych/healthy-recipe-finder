@@ -21,14 +21,16 @@ export const BaseMenuOptionSelect = ({
   containerClass,
 }: BaseMenuOptionSelectProps) => {
   const elementRef = useRef<HTMLButtonElement>(null);
-  const { setElementRect, bottom = 0, left = 0 } = useGetCoordinateForPopup(elementRef);
-  
+  const {
+    setElementRect,
+    bottom = 0,
+    left = 0,
+  } = useGetCoordinateForPopup(elementRef);
 
   return (
     <>
       <button
         ref={elementRef}
-        onClick={()=>setElementRect()}
         type="button"
         popoverTarget={popoverId}
         aria-haspopup="true"
@@ -37,6 +39,7 @@ export const BaseMenuOptionSelect = ({
         {placeholder} <ArrowDownIco />
       </button>
       <div
+        onBeforeToggle={setElementRect}
         id={popoverId}
         popover="auto"
         role="menu"
