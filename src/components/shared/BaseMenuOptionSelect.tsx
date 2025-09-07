@@ -10,6 +10,9 @@ interface BaseMenuOptionSelectProps {
   popoverId: string;
   radioName: string;
   containerClass: string;
+  checkedValue: string;
+  updateField: (filterName: string, value: string) => void;
+  clearField: (filterName: string) => void;
 }
 
 export const BaseMenuOptionSelect = ({
@@ -19,6 +22,9 @@ export const BaseMenuOptionSelect = ({
   popoverId,
   radioName,
   containerClass,
+  clearField,
+  updateField,
+  checkedValue,
 }: BaseMenuOptionSelectProps) => {
   const elementRef = useRef<HTMLButtonElement>(null);
   const {
@@ -26,6 +32,15 @@ export const BaseMenuOptionSelect = ({
     bottom = 0,
     left = 0,
   } = useGetCoordinateForPopup(elementRef);
+
+  const coordinateProperty = {
+    "--bottom-coordinate": `${bottom}px`,
+    "--left-coordinate": `${left}px`,
+  } as React.CSSProperties;
+
+  const selectPlaceholder = checkedValue
+    ? `${placeholder}: ${checkedValue}`
+    : placeholder;
 
   return (
     <>
@@ -36,29 +51,38 @@ export const BaseMenuOptionSelect = ({
         aria-haspopup="true"
         className="text-preset-7"
       >
-        {placeholder} <ArrowDownIco />
+        {selectPlaceholder} <ArrowDownIco />
       </button>
       <div
         onBeforeToggle={setElementRect}
         id={popoverId}
-        popover="auto"
+        popover="manual"
         role="menu"
         className={containerClass}
-        style={
-          {
-            "--bottom-coordinate": `${bottom}px`,
-            "--left-coordinate": `${left}px`,
-          } as React.CSSProperties
-        }
+        style={coordinateProperty}
       >
         <fieldset>
           <legend className="visually-hidden">{legend}</legend>
           {optionList.map((value) => (
             <label key={value} className="text-preset-7">
-              <input type="radio" name={radioName} value={value} />
+              <input
+                type="radio"
+                name={radioName}
+                value={value}
+                checked={checkedValue === value}
+                onChange={(e) => updateField(radioName, e.target.value)}
+              />
               {value}
             </label>
           ))}
+          <button
+            type="button"
+            aria-label={`Clear ${placeholder.toLowerCase()} selection`}
+            onClick={() => clearField(radioName)}
+            className="text-preset-9"
+          >
+            Clear
+          </button>
         </fieldset>
       </div>
     </>

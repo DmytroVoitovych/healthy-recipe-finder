@@ -1,5 +1,15 @@
 .recipesListForm {
   display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  @media (min-width: $sm) {
+    flex-direction: row;
+  }
+
+  @media (min-width: $lg) {
+    gap: 16px;
+  }
 
   & [aria-haspopup="true"] {
     display: flex;
@@ -11,33 +21,64 @@
     border-radius: 10px;
     border: 1px solid var(--color-border-medium);
     background-color: var(--color-background-primary);
-    anchor-name: --optionsButton;
+    transition: border 250ms ease-in-out, outline 250ms ease-in-out;
+
+    @media (min-width: $sm) {
+      flex-grow: unset;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        border-color: var(--color-border-focus);
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 2px;
+    }
+  }
+
+  & [popover] {
+    --width-for-small-devices: calc(100% - (var(--container-padding) * 2));
+    --popover-gap: 8px;
+
+    position: absolute;
+    top: calc(anchor(bottom) + var(--popover-gap));
+    left: anchor(left);
+    border-radius: 8px;
+    border: 1px solid var(--color-border-medium);
+    background-color: var(--color-background-primary);
+
+    width: var(--width-for-small-devices);
+    text-align: center;
+    padding: 8px;
+
+    @media (min-width: $sm) {
+      width: auto;
+      max-width: 240px;
+    }
+
+    @supports not (anchor-name: --optionsButtonPrep) {
+      top: calc(var(--bottom-coordinate) + var(--popover-gap));
+      left: var(--left-coordinate);
+    }
   }
 }
 
-.prepTimeRadioMenuContainer[popover="auto"] {
-  --width-for-small-devices: calc(100% - (var(--container-padding) * 2));
-  --popover-gap: 8px;
-
-  position: absolute;
-  position-anchor: --optionsButton;
-  top: calc(anchor(bottom) + var(--popover-gap));
-  left: anchor(left);
-  border-radius: 8px;
-  border: 1px solid var(--color-border-medium);
-  background-color: var(--color-background-primary);
-
-  width: var(--width-for-small-devices);
-  text-align: center;
-  padding: 8px;
-
-  @supports not (anchor-name: --optionsButton) {
-    top: calc(var(--bottom-coordinate) + var(--popover-gap));
-    left: var(--left-coordinate);
-  }
-
+.timeRadioMenuContainer {
   & fieldset {
     display: grid;
+  }
+
+  & fieldset > button{
+   padding: 8px;
+   text-align: left;
+
+   &:focus-visible {
+      outline: 2px solid currentColor;
+      border-radius: 8px;
+    }
   }
 
   & fieldset > label {
@@ -45,6 +86,12 @@
     align-items: center;
     gap: 8px;
     padding: 8px;
+    cursor: pointer;
+
+    &:has(input:focus-visible) {
+      outline: 2px solid currentColor;
+      border-radius: 8px;
+    }
 
     & input {
       appearance: none;
@@ -58,8 +105,25 @@
       height: 16px;
       position: relative;
 
+      @media (hover: hover) {
+        &:hover {
+          border-color: var(--color-button-bg-hover);
+          box-shadow: var(--shadow-radio-hover);
+        }
+      }
+
+      &:focus-visible {
+        box-shadow: var(--shadow-radio-focus);
+        border-color: currentColor;
+      }
+
       &:checked {
         border: 2px solid currentColor;
+      }
+
+      &:where(:hover, :focus-visible):checked {
+        border-color: var(--color-button-bg-hover);
+        outline: currentColor;
       }
 
       &:checked::after {
@@ -78,6 +142,10 @@
           width: 2px;
           height: 2px;
         }
+      }
+
+      &:where(:hover, :focus-visible):checked::after {
+        background-color: var(--color-button-bg-hover);
       }
     }
   }
