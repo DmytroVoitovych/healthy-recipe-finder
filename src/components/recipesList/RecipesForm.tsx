@@ -34,7 +34,11 @@ export const RecipesForm = () => {
     useFilterBasedOnChange(initialState);
 
   return (
-    <form className={styles.recipesListForm}>
+    <form
+      className={styles.recipesListForm}
+      role="search" 
+      aria-label="Filter healthy recipes"
+    >
       <BaseMenuOptionSelect
         {...MAX_PREP_TIME}
         containerClass={styles.timeRadioMenuContainer}

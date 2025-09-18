@@ -31,17 +31,18 @@ export const BaseMenuOptionSelect = ({
     setElementRect,
     bottom = 0,
     left = 0,
+    isOpen = false,
   } = useGetCoordinateForPopup(elementRef);
 
   const coordinateProperty = {
-    "--bottom-coordinate": `${bottom}px`,
-    "--left-coordinate": `${left}px`,
+    "--bottom-coordinate": `${bottom ?? 0}px`,
+    "--left-coordinate": `${left ?? 0}px`,
   } as React.CSSProperties;
 
   const selectPlaceholder = checkedValue
     ? `${placeholder}: ${checkedValue}`
     : placeholder;
-
+  console.log("Render:", radioName);
   return (
     <>
       <button
@@ -49,6 +50,8 @@ export const BaseMenuOptionSelect = ({
         type="button"
         popoverTarget={popoverId}
         aria-haspopup="true"
+        aria-expanded={isOpen}
+        aria-controls={popoverId}
         className="text-preset-7"
       >
         {selectPlaceholder} <ArrowDownIco />

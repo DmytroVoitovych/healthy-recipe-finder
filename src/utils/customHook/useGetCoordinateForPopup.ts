@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useState } from "react";
+import { RefObject, useEffect, useRef, useState } from "react";
 
 type RectType = {
   top: number | undefined;
@@ -11,46 +11,53 @@ export const useGetCoordinateForPopup = (
   elementRef: RefObject<HTMLButtonElement | HTMLElement | null>
 ) => {
   const [targetRect, setTargetRect] = useState<RectType>(null);
-  let isResizing = false;
+  const isResizing = useRef(false);
+  const targetRectRef = useRef(targetRect);
 
   function setElementRect() {
     const rect = elementRef?.current?.getBoundingClientRect();
+    const setRectCondition = !targetRect || (targetRect && isResizing.current);
+
     if (!rect) {
       console.warn("Element ref is not attached");
       return;
     }
 
-    if (!targetRect || isResizing) {
+    if (setRectCondition) {
       setTargetRect({
         left: rect.left,
         top: rect.top,
         right: rect.right,
         bottom: rect.bottom,
       });
-      isResizing = false;
+      isResizing.current = false;
     } else {
       setTargetRect(null);
     }
   }
 
+  useEffect(() => {
+    targetRectRef.current = targetRect;
+  }, [targetRect]);
+
   const forceUpdateRect = () => {
-    isResizing = true;
+    if (!targetRectRef.current) return;
+    isResizing.current = true;
     setElementRect();
   };
 
   useEffect(() => {
-    const resizeObserver = new ResizeObserver(() => forceUpdateRect());
-    if (targetRect && elementRef.current) {
-      resizeObserver.observe(elementRef.current);
-    }
+    const resizeObserver = new ResizeObserver(forceUpdateRect);
+    if (elementRef.current) resizeObserver.observe(document.body);
     return () => resizeObserver.disconnect();
-  }, [targetRect]);
+  }, [elementRef]);
 
   return {
     top: targetRect?.top,
     bottom: targetRect?.bottom,
     left: targetRect?.left,
     right: targetRect?.right,
+    isOpen:!!targetRect,
     setElementRect,
     forceUpdateRect,
   };
