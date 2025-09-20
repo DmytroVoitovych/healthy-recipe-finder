@@ -2,6 +2,7 @@
 import { useFilterBasedOnChange } from "@/utils/customHook/useFilterBasedOnChange";
 import { BaseMenuOptionSelect } from "../shared/BaseMenuOptionSelect";
 import styles from "./recipesForm.module.css";
+import { RecipesSearchInput } from "./RecipesSearchInput";
 
 const MAX_PREP_TIME = {
   placeholder: "Max Prep Time",
@@ -36,7 +37,7 @@ export const RecipesForm = () => {
   return (
     <form
       className={styles.recipesListForm}
-      role="search" 
+      role="search"
       aria-label="Filter healthy recipes"
     >
       <BaseMenuOptionSelect
@@ -53,6 +54,7 @@ export const RecipesForm = () => {
         clearField={clearFilter}
         checkedValue={filters[MAX_COOK_TIME.radioName] as string}
       />
+      <RecipesSearchInput />
     </form>
   );
 };

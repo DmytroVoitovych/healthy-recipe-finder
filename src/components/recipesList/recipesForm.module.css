@@ -11,7 +11,7 @@
     gap: 16px;
   }
 
-  & [aria-haspopup="true"] {
+  & :where([aria-haspopup="true"], [name="q"]) {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,6 +21,7 @@
     border-radius: 10px;
     border: 1px solid var(--color-border-medium);
     background-color: var(--color-background-primary);
+    text-wrap-mode: nowrap;
     transition: border 250ms ease-in-out, outline 250ms ease-in-out;
 
     @media (min-width: $sm) {

@@ -40,7 +40,7 @@ export const BaseMenuOptionSelect = ({
   } as React.CSSProperties;
 
   const selectPlaceholder = checkedValue
-    ? `${placeholder}: ${checkedValue}`
+    ? `${placeholder}: ${parseInt(checkedValue)}`
     : placeholder;
   console.log("Render:", radioName);
   return (

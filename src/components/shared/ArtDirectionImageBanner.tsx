@@ -24,7 +24,7 @@ const ArtDirectionImageBanner: FC<ArtDirectionImageProps> = ({
 }) => {
   const common = {
     alt: altContent,
-    sizes: "auto",
+    sizes: "(min-width: 1200px) 1920px, (min-width: 640px) 1024px, 100vw",
   };
 
   const {
@@ -103,9 +103,9 @@ const ArtDirectionImageBanner: FC<ArtDirectionImageProps> = ({
       />
       <source media="(max-width: 639.9px)" srcSet={mobileWebP} type="image/webp" />
 
-      <source media="(min-width: 1200px)" srcSet={desktop} type="image/webp" />
-      <source media="(min-width: 640px) and (max-width: 1199px)" srcSet={tablet} />
-      <source media="(max-width: 639.9px)" srcSet={mobile} />
+      <source media="(min-width: 1200px)" srcSet={desktop} type="image/jpeg" />
+      <source media="(min-width: 640px) and (max-width: 1199px)" srcSet={tablet} type="image/jpeg" />
+      <source media="(max-width: 639.9px)" srcSet={mobile} type="image/jpeg" />
       <img
         {...base}
         src={desktop}
