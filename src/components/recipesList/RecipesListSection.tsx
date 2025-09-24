@@ -1,6 +1,8 @@
+import { RecipesResponse } from "@/lib/api/fetchRecipesTypes";
 import { RecipesForm } from "./RecipesForm";
+import { RecipeCard } from "./RecipeCard";
 
-export const RecipesListSelection = () => {
+export const RecipesListSelection = ({recipeList}:{recipeList:RecipesResponse}) => {
   return (
     <section>
       <h1 className="visually-hidden">
@@ -8,6 +10,11 @@ export const RecipesListSelection = () => {
         Meals Under 30 Minutes.
       </h1>
       <RecipesForm/>
+      <ul>
+        {recipeList.recipes.recipe.map((recipe) => (
+          <RecipeCard key={recipe.recipe_id} recipe={recipe}/>
+        ))}
+      </ul>
     </section>
   );
 };
