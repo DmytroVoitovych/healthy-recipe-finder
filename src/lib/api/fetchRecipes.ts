@@ -1,49 +1,38 @@
-import { createFatSecretUrlRequest } from "./fatSecret";
-import { RecipesResponse } from "./fetchRecipesTypes";
+import { RecipeResponse } from "./fetchRecipesTypes";
+import { getBaseUrl } from "./../../utils/fetchHelpers/getBaseUrl";
 
-const initialParams = {
-  format: "json",
-  "calories.to": 600,
-  sort_by: "caloriesPerServingAscending",
-  page_number: 0,
-  max_results: 8,
-  must_have_images: "true",
-  "protein_percentage.from": 15,
-  "carb_percentage.to": 60,
+export type FetchRecipesParams = {
+  q?: string;
+  page?: number;
 };
 
-export type FetchRecipesParams =
-  | string
-  | string[][]
-  | Record<string, string>
-  | URLSearchParams
-  | undefined;
-
 export const fetchRecipes = async (
-  params: FetchRecipesParams
-): Promise<RecipesResponse> => {
-  const dayInSeconds = 60 * 60 * 24;
-  const searchParams = new URLSearchParams(params || {});
-  const combinedParams = { ...initialParams, ...Object.fromEntries(searchParams) };
+  params?: FetchRecipesParams
+): Promise<RecipeResponse> => {
+  const searchParams = new URLSearchParams();
+  const isServer = typeof window === "undefined";
 
-  const url = createFatSecretUrlRequest(
-    "GET",
-    "recipes/search/v3",
-    combinedParams,
-    process.env.FATSECRET_KEY!,
-    process.env.FATSECRET_SECRET!
-  );
+  if (params?.q) searchParams.set("q", params.q);
+
+  if (params?.page !== undefined) searchParams.set("page", params.page.toString());
+
+  const qs = searchParams.toString();
+  const baseUrl = await getBaseUrl();
+  const url = `${baseUrl}/api/recipes${qs ? `?${qs}` : ""}`;
 
   try {
     const response = await fetch(url, {
-      next: { revalidate: dayInSeconds },
+      next: isServer ? { revalidate: 60 * 60 * 24 } : {},
     });
 
     if (!response.ok) {
-      throw new Error("Failed to fetch recipes");
+      throw new Error(
+        `Failed to fetch recipes: ${response.status} ${response.statusText}`
+      );
     }
 
-    return response.json();
+    const data: RecipeResponse = await response.json();
+    return data;
   } catch (error) {
     console.error("Error fetching recipes:", error);
     throw error;
