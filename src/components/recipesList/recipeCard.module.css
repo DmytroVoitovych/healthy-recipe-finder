@@ -1,0 +1,58 @@
+/* image */
+.recipeCard {
+  height: 100%;
+}
+
+.recipeCardSection {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  border: 1px solid var(--color-border-light);
+  border-radius: 10px;
+  background-color: var(--color-background-primary);
+  box-shadow: var(--shadow-card);
+  height: inherit;
+
+  & img {
+    width: 100%;
+    height: auto;
+    max-height: 450px;
+    aspect-ratio: 2 / 1.75;
+    border-radius: 10px;
+  }
+
+  & > :not(:last-child) {
+    margin-bottom: 16px;
+  }
+
+  & h2 {
+    text-wrap-mode: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: var(--color-text-primary);
+    margin-bottom: 10px;
+  }
+
+  & ul {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 8px;
+    color: var(--color-text-primary);
+
+    & li {
+      display: flex;
+      gap: 6px;
+    }
+
+    & li:not(:last-child) {
+      margin-right: 11px;
+    }
+  }
+}
+
+.viewRecipeBtn {
+  display: grid;
+  padding: 12px 32px;
+  border-radius: 999px;
+  margin-top: auto;
+}
