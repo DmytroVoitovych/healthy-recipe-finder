@@ -37,6 +37,7 @@
     display: flex;
     flex-wrap: wrap;
     row-gap: 8px;
+    margin-top: auto;
     color: var(--color-text-primary);
 
     & li {
@@ -51,8 +52,6 @@
 }
 
 .viewRecipeBtn {
-  display: grid;
   padding: 12px 32px;
   border-radius: 999px;
-  margin-top: auto;
 }

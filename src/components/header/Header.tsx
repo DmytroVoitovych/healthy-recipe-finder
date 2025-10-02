@@ -52,7 +52,11 @@ const Header = () => {
         </button>
         <div className={styles.navContainer}>
           <HeaderNavigation isVisible={forceVisible} />
-          <ButtonAsLink content={buttonContent} stylesClass={styles.navBtn} />
+          <ButtonAsLink
+            content={buttonContent}
+            stylesClass={styles.navBtn}
+            link="/recipes"
+          />
         </div>
       </div>
     </header>

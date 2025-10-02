@@ -58,6 +58,7 @@
   --shadow-ico:  0 1px 0 0 #e9ede8;
   --shadow-radio-hover: 0 1px 2px 0 rgba(22, 58, 52, 0.12);
   --shadow-radio-focus:0 0 0 4px #e9ede8;
+  --shadow-card: 0 8px 16px -9px rgba(22, 58, 52, 0.16);;
 
   --container-padding:16px;
 

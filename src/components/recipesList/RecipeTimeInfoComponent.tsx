@@ -21,9 +21,9 @@ export const RecipeTimeInfoComponent = ({ timeInfo }: RecipeTimeInfoProps) => {
   if (!timeInfo.preparationMinutes || !timeInfo.cookingMinutes)
     return (
       <li data-total-time>
-        <CookTimeIco />
-        Total coocking time:{" "}
-        <time dateTime={`PT${timeInfo.readyInMinutes}M`}>
+        <CookTimeIco aria-hidden="true" />
+        Total cooking time:{" "}
+        <time itemProp="totalTime" dateTime={`PT${timeInfo.readyInMinutes}M`}>
           {timeFormatedDataTotal}
         </time>{" "}
       </li>
@@ -32,14 +32,17 @@ export const RecipeTimeInfoComponent = ({ timeInfo }: RecipeTimeInfoProps) => {
   return (
     <>
       <li>
-        <PrepTimeIco />
-        Prep: <time dateTime={`PT${timeInfo.preparationMinutes}M`}></time>
-        {timeFormatedDataPrep}
+        <PrepTimeIco aria-hidden="true" />
+        Prep:{" "}
+        <time itemProp="prepTime" dateTime={`PT${timeInfo.preparationMinutes}M`}>
+          {" "}
+          {timeFormatedDataPrep}
+        </time>
       </li>
       <li>
-        <CookTimeIco />
+        <CookTimeIco aria-hidden="true" />
         Cook:{" "}
-        <time dateTime={`PT${timeInfo.cookingMinutes}M`}>
+        <time itemProp="cookTime" dateTime={`PT${timeInfo.cookingMinutes}M`}>
           {timeFormatedDataCook}
         </time>
       </li>

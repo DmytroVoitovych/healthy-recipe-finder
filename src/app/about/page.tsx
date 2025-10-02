@@ -5,6 +5,7 @@ import { BeyondThePlateSection } from "@/components/beyondThePlate/BeyondThePlat
 import { CallToActionSection } from "@/components/callToAction/CallToActionSection";
 
 export default function About() {
+  
   return (
     <>
       <AboutHero />

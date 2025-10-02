@@ -20,26 +20,25 @@ const nextConfig: NextConfig = {
   },
 
   images: {
-    qualities: [75, 80, 85],
+    qualities: [75, 80, 85, 100],
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "m.ftscrt.com",
+        hostname: "img.spoonacular.com",
         pathname: "/**",
       },
     ],
   },
 
   turbopack: {
-    
     rules: {
       "*.svg": {
         loaders: ["@svgr/webpack"],
         as: "*.ts",
       },
     },
-     resolveAlias: {
-      '@Images': path.resolve(__dirname, './src/app/assets/images'),
+    resolveAlias: {
+      "@Images": path.resolve(__dirname, "./src/app/assets/images"),
     },
   },
 };

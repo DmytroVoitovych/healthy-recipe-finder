@@ -12,10 +12,12 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
+    "benchmark": "^2.1.4",
     "next": "15.5.0",
     "postcss-simple-vars": "^7.0.1",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "sharp": "^0.34.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -37,5 +39,4 @@
     "ts-node": "^10.9.2",
     "typescript": "^5"
   }
-
 }

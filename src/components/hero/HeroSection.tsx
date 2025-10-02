@@ -8,8 +8,6 @@ import srcTabletWebP from "@/app/assets/images/hero/hero-banner-tablet.webp";
 import srcMobileJpg from "@/app/assets/images/hero/hero-banner-mobile.jpg";
 import srcMobileWebP from "@/app/assets/images/hero/hero-banner-mobile.webp";
 
-
-
 const buttonContent = "Start exploring";
 const altContent = "The mexican man make healthy food in the kitchen";
 
@@ -32,7 +30,11 @@ export const HeroSection = () => {
         Discover eight quick, whole-food recipes that you can cook tonight—no
         processed junk, no guesswork.
       </p>
-      <ButtonAsLink content={buttonContent} stylesClass={styles.heroButton} />
+      <ButtonAsLink
+        content={buttonContent}
+        stylesClass={styles.heroButton}
+        link="/recipes"
+      />
       <ArtDirectionImageBanner
         className={`${styles.heroImage}`}
         altContent={altContent}

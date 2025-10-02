@@ -11,7 +11,7 @@ export const CallToActionSection = () => {
       <p className="text-preset-6">
         Hit the button, pick a recipe, and get dinner on the table—fast.
       </p>
-      <ButtonAsLink content={buttonContent} stylesClass={styles.callToActionButton} />
+      <ButtonAsLink link="/recipes" content={buttonContent} stylesClass={styles.callToActionButton} />
       </div>
     </section>
   );
