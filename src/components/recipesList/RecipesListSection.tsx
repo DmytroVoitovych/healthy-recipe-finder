@@ -4,13 +4,14 @@ import { RecipeResponse } from "@/lib/api/fetchRecipesTypes";
 import { FetchRecipesParams } from "@/lib/api/fetchRecipes";
 import styles from "./recipesListSection.module.css";
 import { RecipesListJsonLd } from "./RecipeJsonLd";
+import { PaginationComponent } from "../pagination/PaginationComponent";
 
 interface RecipesListSectionProps {
   recipeList: RecipeResponse;
   params: FetchRecipesParams;
 }
 
-export const RecipesListSelection = ({
+export const RecipesListSection = ({
   recipeList,
   params,
 }: RecipesListSectionProps) => {
@@ -27,6 +28,7 @@ export const RecipesListSelection = ({
         ))}
       </ul>
       <RecipesListJsonLd recipeList={recipeList} />
+      <PaginationComponent pagination={recipeList.pagination} />
     </section>
   );
 };

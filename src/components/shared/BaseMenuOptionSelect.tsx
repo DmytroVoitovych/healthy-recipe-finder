@@ -42,7 +42,7 @@ export const BaseMenuOptionSelect = ({
   const selectPlaceholder = checkedValue
     ? `${placeholder}: ${parseInt(checkedValue)}`
     : placeholder;
-  console.log("Render:", radioName);
+
   return (
     <>
       <button

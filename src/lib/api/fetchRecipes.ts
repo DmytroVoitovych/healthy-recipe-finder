@@ -9,15 +9,16 @@ export type FetchRecipesParams = {
 export const fetchRecipes = async (
   params?: FetchRecipesParams
 ): Promise<RecipeResponse> => {
+  console.log('testing fetchRecipes params:', params);
   const searchParams = new URLSearchParams();
   const isServer = typeof window === "undefined";
 
   if (params?.q) searchParams.set("q", params.q);
 
-  if (params?.page !== undefined) searchParams.set("page", params.page.toString());
+  if (params?.page !== undefined) searchParams.set("page", (params.page - 1).toString());
 
   const qs = searchParams.toString();
-  const baseUrl = await getBaseUrl();
+  const baseUrl =  getBaseUrl();
   const url = `${baseUrl}/api/recipes${qs ? `?${qs}` : ""}`;
 
   try {

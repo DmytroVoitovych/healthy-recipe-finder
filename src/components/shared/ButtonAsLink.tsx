@@ -7,6 +7,9 @@ interface contentType {
   link: string;
   ariaLabel?: string;
   itemProp?: string;
+  prefetch?: boolean;
+  scroll?: boolean;
+  rel?: 'prev' | 'next'; 
 }
 
 export const ButtonAsLink = ({ content, stylesClass, link, ...props }: contentType) => {

@@ -24,8 +24,8 @@ body {
   overflow-x: clip;
 }
 
-img{
-background-color: var(--color-background-tertiary);
+img {
+  background-color: var(--color-background-tertiary);
 }
 
 main {

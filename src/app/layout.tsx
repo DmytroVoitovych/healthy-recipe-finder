@@ -6,8 +6,14 @@ import { Footer } from "@/components/footer/Footer";
 
 const nunitoSans = localFont({
   src: [
-    { path: "./assets/fonts/Nunito_Sans/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf", style: "normal" },
-    { path: "./assets/fonts/Nunito_Sans/NunitoSans-Italic-VariableFont_YTLC,opsz,wdth,wght.ttf", style: "italic" },
+    {
+      path: "./assets/fonts/Nunito_Sans/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf",
+      style: "normal",
+    },
+    {
+      path: "./assets/fonts/Nunito_Sans/NunitoSans-Italic-VariableFont_YTLC,opsz,wdth,wght.ttf",
+      style: "italic",
+    },
   ],
   variable: "--font-nunito-sans",
   display: "swap",
@@ -16,17 +22,20 @@ const nunitoSans = localFont({
 const nunito = localFont({
   src: [
     { path: "./assets/fonts/Nunito/Nunito-VariableFont_wght.ttf", style: "normal" },
-    { path: "./assets/fonts/Nunito/Nunito-Italic-VariableFont_wght.ttf", style: "italic" },
+    {
+      path: "./assets/fonts/Nunito/Nunito-Italic-VariableFont_wght.ttf",
+      style: "italic",
+    },
   ],
   variable: "--font-nunito",
   display: "swap",
 });
 
 const recoleta = localFont({
-src: "./assets/fonts/Recoleta/Recoleta-SemiBold.woff2",
-display:'swap',
-weight:'600',
-variable:"--font-recoleta-semibold"  
+  src: "./assets/fonts/Recoleta/Recoleta-SemiBold.woff2",
+  display: "swap",
+  weight: "600",
+  variable: "--font-recoleta-semibold",
 });
 
 export const metadata: Metadata = {
@@ -40,14 +49,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${nunito.variable} ${nunitoSans.variable} ${recoleta.variable}`}>
+    <html lang="en" >
+      <body
+        className={`${nunito.variable} ${nunitoSans.variable} ${recoleta.variable}`}
+      >
         <div className="wrapper">
-        <Header />
-        <main>
-        {children}
-        </main>
-        <Footer/>
+          <Header />
+          <main>{children}</main>
+          <Footer />
         </div>
       </body>
     </html>
