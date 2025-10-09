@@ -3,6 +3,11 @@ import { useFilterBasedOnChange } from "@/utils/customHook/useFilterBasedOnChang
 import { BaseMenuOptionSelect } from "../shared/BaseMenuOptionSelect";
 import styles from "./recipesForm.module.css";
 import { RecipesSearchInput } from "./RecipesSearchInput";
+import { FetchRecipesParams } from "@/lib/api/fetchRecipes";
+
+interface RecipesFormProps {
+  params: FetchRecipesParams;
+}
 
 const MAX_PREP_TIME = {
   placeholder: "Max Prep Time",
@@ -24,13 +29,13 @@ const SEARCH = {
   searchName: "q",
 };
 
-const initialState = {
-  [MAX_PREP_TIME.radioName]: "",
-  [MAX_COOK_TIME.radioName]: "",
-  [SEARCH.searchName]: "",
-};
+export const RecipesForm = ({ params }: RecipesFormProps) => {
+  const initialState = {
+    prepTime: params.prepTime || "",
+    cookTime: params.cookTime || "",
+    q: params.q || "",
+  };
 
-export const RecipesForm = () => {
   const { filters, updateFilter, clearFilter } =
     useFilterBasedOnChange(initialState);
 
@@ -54,7 +59,10 @@ export const RecipesForm = () => {
         clearField={clearFilter}
         checkedValue={filters[MAX_COOK_TIME.radioName] as string}
       />
-      <RecipesSearchInput />
+      <RecipesSearchInput
+        updateField={updateFilter}
+        value={filters[SEARCH.searchName]}
+      />
     </form>
   );
 };

@@ -41,6 +41,9 @@ const nextConfig: NextConfig = {
       "@Images": path.resolve(__dirname, "./src/app/assets/images"),
     },
   },
+  experimental: {
+    //  viewTransition: true,
+  },
 };
 
 export default nextConfig;

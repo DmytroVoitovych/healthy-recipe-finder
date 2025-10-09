@@ -21,14 +21,14 @@ export const RecipesListSection = ({
         Healthy Recipe Collection - Quick Mediterranean, Vegetarian and High-Protein
         Meals Under 30 Minutes.
       </h1>
-      <RecipesForm />
+      <RecipesForm params={params} />
       <ul className={styles.recipesList}>
         {recipeList.data.map((recipe) => (
           <RecipeCard key={recipe.id} recipe={recipe} />
         ))}
       </ul>
       <RecipesListJsonLd recipeList={recipeList} />
-      <PaginationComponent pagination={recipeList.pagination} />
+      <PaginationComponent pagination={recipeList.pagination} params={params} />
     </section>
   );
 };

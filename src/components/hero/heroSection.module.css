@@ -1,5 +1,6 @@
 .sectionHero {
   text-align: left;
+  
 
   @media (min-width: $lg) {
     text-align: center;

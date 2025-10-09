@@ -4,6 +4,7 @@ import { SmoothPaginationScroll } from "./SmoothPaginationScroll";
 import styles from "./paginationComponent.module.css";
 import { useSimplePagination } from "@/utils/customHook/useSimplePagination";
 import { ButtonAsLink } from "../shared/ButtonAsLink";
+import { FetchRecipesParams } from "@/lib/api/fetchRecipes";
 
 const MAX_PAG_LINK = 7;
 const leftArrow = "←";
@@ -11,14 +12,20 @@ const rightArrow = "→";
 
 interface PaginationProps {
   pagination: RecipeResponse["pagination"];
+  params: FetchRecipesParams;
 }
 
-export const PaginationComponent = ({ pagination }: PaginationProps) => {
+export const PaginationComponent = ({ pagination, params }: PaginationProps) => {
   const { page: currentPage, totalPages, hasPrev, hasNext } = pagination;
 
+  const { page, ...rest } = params;
   const visibleButtons = Math.min(MAX_PAG_LINK, totalPages);
   const firstBased = currentPage + 1;
   const pageNumbers = useSimplePagination(firstBased, totalPages, visibleButtons);
+
+  const urlParams = new URLSearchParams(rest).toString();
+  const buildedLink = urlParams ? `?${urlParams}` : "";
+  const buildedLinkWithPage = urlParams ? `&${urlParams}` : "";
 
   return (
     <nav aria-label="Pagination Navigation" className={styles.pagination}>
@@ -26,7 +33,11 @@ export const PaginationComponent = ({ pagination }: PaginationProps) => {
       {hasPrev && (
         <ButtonAsLink
           content={leftArrow}
-          link={firstBased === 1 ? "/recipes" : `/recipes?page=${firstBased - 1}`}
+          link={
+            firstBased === 1
+              ? `/recipes${buildedLink}`
+              : `/recipes?page=${firstBased - 1}${buildedLinkWithPage}`
+          }
           stylesClass={styles.arrowBtn}
           prefetch={false}
           scroll={false}
@@ -40,7 +51,11 @@ export const PaginationComponent = ({ pagination }: PaginationProps) => {
           return (
             <li key={pageNum} {...(hasGap && { "data-page-gap": "" })}>
               <Link
-                href={pageNum === 1 ? "/recipes" : `/recipes?page=${pageNum}`}
+                href={
+                  pageNum === 1
+                    ? `/recipes${buildedLink}`
+                    : `/recipes?page=${pageNum}${buildedLinkWithPage}`
+                }
                 aria-label={`Go to page ${pageNum}`}
                 aria-current={pageNum === firstBased ? "page" : undefined}
                 prefetch={false}
@@ -55,7 +70,7 @@ export const PaginationComponent = ({ pagination }: PaginationProps) => {
       {hasNext && (
         <ButtonAsLink
           content={rightArrow}
-          link={`/recipes?page=${firstBased + 1}`}
+          link={`/recipes?page=${firstBased + 1}${buildedLinkWithPage}`}
           stylesClass={styles.arrowBtn}
           prefetch={false}
           scroll={false}

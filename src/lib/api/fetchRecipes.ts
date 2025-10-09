@@ -3,22 +3,25 @@ import { getBaseUrl } from "./../../utils/fetchHelpers/getBaseUrl";
 
 export type FetchRecipesParams = {
   q?: string;
-  page?: number;
+  page?: string;
+  prepTime?: string;
+  cookTime?: string;
 };
 
 export const fetchRecipes = async (
   params?: FetchRecipesParams
 ): Promise<RecipeResponse> => {
-  console.log('testing fetchRecipes params:', params);
+  console.log("testing fetchRecipes params:", params);
   const searchParams = new URLSearchParams();
   const isServer = typeof window === "undefined";
 
   if (params?.q) searchParams.set("q", params.q);
 
-  if (params?.page !== undefined) searchParams.set("page", (params.page - 1).toString());
+  if (params?.page !== undefined)
+    searchParams.set("page", (params.page - 1).toString());
 
   const qs = searchParams.toString();
-  const baseUrl =  getBaseUrl();
+  const baseUrl = getBaseUrl();
   const url = `${baseUrl}/api/recipes${qs ? `?${qs}` : ""}`;
 
   try {
