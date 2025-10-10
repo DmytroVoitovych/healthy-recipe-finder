@@ -13,6 +13,8 @@ export const useFilterBasedOnChange = (fields: Record<string, string>) => {
     const urlParams = new URLSearchParams(window.location.search);
     const newFilters = { ...fields };
 
+    if(!urlParams.size) for (const key in newFilters) newFilters[key] = "";
+    
     for (const [key, value] of urlParams.entries()) {
       if (key in newFilters) newFilters[key] = value;
     }
