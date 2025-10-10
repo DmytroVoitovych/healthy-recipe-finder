@@ -17,10 +17,12 @@ const MAX_QUERY_LENGTH = 200;
 
 export async function GET(req: NextRequest) {
   try {
-    await preloadPromise;
+    await preloadPromise; // remove await if already awaited in middleware (before production)
 
     const { searchParams } = req.nextUrl;
     const search = searchParams.get("q")?.toLowerCase().trim() || "";
+    const prepTime = parseInt(searchParams.get("prepTime") || "");
+    const cookTime = parseInt(searchParams.get("cookTime") || "");
 
     if (search.length > MAX_QUERY_LENGTH) {
       return NextResponse.json(
@@ -45,7 +47,7 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    const filtered = filterRecipes(search, recipesMap);
+    const filtered = filterRecipes(search, prepTime, cookTime, recipesMap);
 
     const total = filtered.length;
     const totalPages = Math.ceil(total / PAGE_SIZE);

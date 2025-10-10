@@ -1,10 +1,9 @@
 import { usePathname, useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useState } from "react";
 
 export const useFilterBasedOnChange = (fields: Record<string, string>) => {
   const [filters, setFilters] = useState(fields);
-  const [isPending, startTransition] = useTransition();
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -14,11 +13,9 @@ export const useFilterBasedOnChange = (fields: Record<string, string>) => {
     const urlParams = new URLSearchParams(window.location.search);
     const newFilters = { ...fields };
 
-    Object.keys(fields).forEach((key) => (newFilters[key] = fields[key]));
-
-    urlParams.forEach((value, key) => {
-      if (key in fields) newFilters[key] = value;
-    });
+    for (const [key, value] of urlParams.entries()) {
+      if (key in newFilters) newFilters[key] = value;
+    }
 
     setFilters(newFilters);
   };
@@ -49,27 +46,21 @@ export const useFilterBasedOnChange = (fields: Record<string, string>) => {
       [filterName]: value,
     }));
 
-    startTransition(() => {
-      urlChangeAction("set", filterName, value);
-    });
+    urlChangeAction("set", filterName, value);
   };
 
   const clearFilter = (filterName: string) => {
     setFilters((prev) => ({
       ...prev,
-      [filterName]: fields[filterName],
+      [filterName]: "",
     }));
 
-    startTransition(() => {
-      urlChangeAction("delete", filterName, "");
-    });
+    urlChangeAction("delete", filterName, "");
   };
 
   return {
     filters,
     updateFilter,
     clearFilter,
-    isEmpty: Object.values(filters).every((val) => val === ""),
-    isPending,
   };
 };

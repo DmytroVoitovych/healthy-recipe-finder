@@ -19,9 +19,8 @@ export const PaginationComponent = ({ pagination, params }: PaginationProps) => 
   const { page: currentPage, totalPages, hasPrev, hasNext } = pagination;
 
   const { page, ...rest } = params;
-  const visibleButtons = Math.min(MAX_PAG_LINK, totalPages);
   const firstBased = currentPage + 1;
-  const pageNumbers = useSimplePagination(firstBased, totalPages, visibleButtons);
+  const pageNumbers = useSimplePagination(firstBased, totalPages, MAX_PAG_LINK);
 
   const urlParams = new URLSearchParams(rest).toString();
   const buildedLink = urlParams ? `?${urlParams}` : "";

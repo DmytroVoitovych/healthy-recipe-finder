@@ -12,13 +12,11 @@ export const fetchRecipes = async (
   params?: FetchRecipesParams
 ): Promise<RecipeResponse> => {
   console.log("testing fetchRecipes params:", params);
-  const searchParams = new URLSearchParams();
+  const searchParams = new URLSearchParams(params);
   const isServer = typeof window === "undefined";
 
-  if (params?.q) searchParams.set("q", params.q);
-
   if (params?.page !== undefined)
-    searchParams.set("page", (params.page - 1).toString());
+    searchParams.set("page", (+params.page - 1).toString());
 
   const qs = searchParams.toString();
   const baseUrl = getBaseUrl();

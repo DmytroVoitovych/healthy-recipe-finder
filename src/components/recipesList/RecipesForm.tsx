@@ -31,9 +31,9 @@ const SEARCH = {
 
 export const RecipesForm = ({ params }: RecipesFormProps) => {
   const initialState = {
-    prepTime: params.prepTime || "",
-    cookTime: params.cookTime || "",
-    q: params.q || "",
+    prepTime: params?.prepTime || "",
+    cookTime: params?.cookTime || "",
+    q: params?.q || "",
   };
 
   const { filters, updateFilter, clearFilter } =

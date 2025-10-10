@@ -1,9 +1,32 @@
+
 export interface Nutrient {
   name: string;
   amount: number;
   unit: string;
   percentOfDailyNeeds: number;
 }
+
+export interface NutritionProperty {
+  name: string;
+  amount: number;
+  unit: string;
+}
+
+export interface NutritionIngredient {
+  id: number;
+  name: string;
+  amount: number;
+  unit: string;
+  nutrients: Nutrient[];
+}
+
+export interface Nutrition {
+  nutrients: Nutrient[];
+  properties?: NutritionProperty[];
+  flavonoids?: NutritionProperty[];
+  ingredients?: NutritionIngredient[];
+}
+
 
 export interface ExtendedIngredient {
   id: number;
@@ -17,6 +40,7 @@ export interface ExtendedIngredient {
   amount: number;
   unit: string;
   meta: string[];
+  metaInformation?: string[];
   measures: {
     us: {
       amount: number;
@@ -31,73 +55,87 @@ export interface ExtendedIngredient {
   };
 }
 
+
+export interface InstructionIngredient {
+  id: number;
+  name: string;
+  localizedName: string;
+  image: string;
+}
+
+export interface InstructionEquipment {
+  id: number;
+  name: string;
+  localizedName: string;
+  image: string;
+}
+
+export interface InstructionStep {
+  number: number;
+  step: string;
+  ingredients: InstructionIngredient[];
+  equipment: InstructionEquipment[];
+  length?: {
+    number: number;
+    unit: string;
+  };
+}
+
 export interface AnalyzedInstruction {
   name: string;
-  steps: {
-    number: number;
-    step: string;
-    ingredients: {
-      id: number;
-      name: string;
-      localizedName: string;
-      image: string;
-    }[];
-    equipment: {
-      id: number;
-      name: string;
-      localizedName: string;
-      image: string;
-    }[];
-    length?: {
-      number: number;
-      unit: string;
-    };
-  }[];
+  steps: InstructionStep[];
 }
+
 
 export interface Recipe {
-  aggregateLikes: number;
-  cheap: boolean;
-  cookingMinutes: number | null;
-  creditsText: string;
-  cuisines: string[];
-  dairyFree: boolean;
-  diets: string[];
-  dishTypes: string[];
-  gaps: string;
-  glutenFree: boolean;
-  healthScore: number;
   id: number;
+  title: string;
   image: string;
   imageType: string;
-  license: string | null;
-  lowFodmap: boolean;
-  nutrition: {
-    nutrients: Nutrient[];
-  };
-  occasions: string[];
-  preparationMinutes: number | null;
-  pricePerServing: number;
+  summary: string;
   readyInMinutes: number;
   servings: number;
-  sourceName: string;
-  sourceUrl: string;
-  spoonacularScore: number;
-  spoonacularSourceUrl: string;
-  summary: string;
-  sustainable: boolean;
-  title: string;
+  healthScore: number;
+  pricePerServing: number;
+
+  
+  nutrition: Nutrition;
+
+ 
+  cuisines: string[];
+  dishTypes: string[];
+  diets: string[];
+  occasions: string[];
+
+  
+  aggregateLikes?: number;
+  cheap?: boolean;
+  dairyFree: boolean;
+  glutenFree: boolean;
   vegan: boolean;
   vegetarian: boolean;
-  veryHealthy: boolean;
-  veryPopular: boolean;
-  weightWatcherSmartPoints: number;
+  veryHealthy?: boolean;
+  veryPopular?: boolean;
+  sustainable?: boolean;
+  lowFodmap?: boolean;
 
+  creditsText?: string;
+  license?: string | null;
+  sourceName?: string;
+  sourceUrl?: string;
+  spoonacularSourceUrl?: string;
+
+  spoonacularScore?: number;
+  weightWatcherSmartPoints?: number;
+  cookingMinutes: number | null;
+  preparationMinutes: number | null;
+
+  
   extendedIngredients: ExtendedIngredient[];
-
-  instructions: string;
+  instructions: string | null;
   analyzedInstructions: AnalyzedInstruction[];
 }
+
 
 export interface RecipeResponse {
   data: Recipe[];
@@ -111,6 +149,7 @@ export interface RecipeResponse {
   };
   search?: string;
 }
+
 
 export interface SpoonacularSearchResponse {
   results: Recipe[];
