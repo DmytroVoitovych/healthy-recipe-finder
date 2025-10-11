@@ -1,0 +1,69 @@
+.noResults {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 64px 32px;
+  margin: 48px auto;
+  max-width: 576px;
+  text-align: center;
+  background-color: var(--color-background-primary);
+  border-radius: 16px;
+  border: 2px dashed var(--color-border-medium);
+  box-shadow: var(--shadow-card);
+}
+
+.noResults svg {
+  width: 64px;
+  height: 64px;
+}
+
+.clearFiltersButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  margin-top: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-button-primary-text);
+  background-color: var(--color-primary-500);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-ico);
+  text-decoration: none;
+}
+
+.clearFiltersButton:hover {
+  background-color: var(--color-button-bg-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-radio-hover);
+}
+
+.clearFiltersButton:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-radio-focus);
+}
+
+.clearFiltersButton:active {
+  transform: translateY(0);
+}
+
+@media (max-width: $sm) {
+  .noResults {
+    padding: 48px 24px;
+    margin: 32px 16px;
+  }
+
+  .noResultsHeading {
+    font-size: 20px;
+  }
+
+  .noResultsText {
+    font-size: 15px;
+  }
+}

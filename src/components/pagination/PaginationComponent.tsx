@@ -19,6 +19,7 @@ export const PaginationComponent = ({ pagination, params }: PaginationProps) => 
   const { page: currentPage, totalPages, hasPrev, hasNext } = pagination;
 
   const { page, ...rest } = params;
+  const showPagination = totalPages > 1;
   const firstBased = currentPage + 1;
   const pageNumbers = useSimplePagination(firstBased, totalPages, MAX_PAG_LINK);
 
@@ -44,28 +45,30 @@ export const PaginationComponent = ({ pagination, params }: PaginationProps) => 
           rel="prev"
         />
       )}
-      <ul>
-        {pageNumbers.map((pageNum, i) => {
-          const hasGap = i > 0 && pageNum - pageNumbers[i - 1] > 1;
-          return (
-            <li key={pageNum} {...(hasGap && { "data-page-gap": "" })}>
-              <Link
-                href={
-                  pageNum === 1
-                    ? `/recipes${buildedLink}`
-                    : `/recipes?page=${pageNum}${buildedLinkWithPage}`
-                }
-                aria-label={`Go to page ${pageNum}`}
-                aria-current={pageNum === firstBased ? "page" : undefined}
-                prefetch={false}
-                scroll={false}
-              >
-                {pageNum}
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
+      {showPagination && (
+        <ul>
+          {pageNumbers.map((pageNum, i) => {
+            const hasGap = i > 0 && pageNum - pageNumbers[i - 1] > 1;
+            return (
+              <li key={pageNum} {...(hasGap && { "data-page-gap": "" })}>
+                <Link
+                  href={
+                    pageNum === 1
+                      ? `/recipes${buildedLink}`
+                      : `/recipes?page=${pageNum}${buildedLinkWithPage}`
+                  }
+                  aria-label={`Go to page ${pageNum}`}
+                  aria-current={pageNum === firstBased ? "page" : undefined}
+                  prefetch={false}
+                  scroll={false}
+                >
+                  {pageNum}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      )}
       {hasNext && (
         <ButtonAsLink
           content={rightArrow}

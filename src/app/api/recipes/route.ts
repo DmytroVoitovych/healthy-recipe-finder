@@ -2,15 +2,7 @@ import { RecipeResponse } from "@/lib/api/fetchRecipesTypes";
 import { preloadPromise, recipesMap } from "@/server/preloadRecipes";
 import { filterRecipes } from "@/utils/routerHelpers/filterRecipes";
 import { NextRequest, NextResponse } from "next/server";
-
-const ONE_HOUR = 60 * 60;
-const ONE_DAY = 24 * ONE_HOUR;
-const ONE_WEEK = 7 * ONE_DAY;
-
-const CACHE_MAX_AGE = ONE_DAY;
-const CACHE_STALE_WHILE_REVALIDATE = ONE_WEEK - ONE_DAY;
-
-const CACHE_CONTROL_HEADER = `public, max-age=${CACHE_MAX_AGE}, stale-while-revalidate=${CACHE_STALE_WHILE_REVALIDATE}`;
+import { CACHE_CONTROL_HEADER } from "../casheConfig";
 
 const PAGE_SIZE = 8;
 const MAX_QUERY_LENGTH = 200;

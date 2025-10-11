@@ -4,6 +4,7 @@ import { BaseMenuOptionSelect } from "../shared/BaseMenuOptionSelect";
 import styles from "./recipesForm.module.css";
 import { RecipesSearchInput } from "./RecipesSearchInput";
 import { FetchRecipesParams } from "@/lib/api/fetchRecipes";
+import { use, useEffect, useMemo } from "react";
 
 interface RecipesFormProps {
   params: FetchRecipesParams;
@@ -30,11 +31,14 @@ const SEARCH = {
 };
 
 export const RecipesForm = ({ params }: RecipesFormProps) => {
-  const initialState = {
-    prepTime: params?.prepTime || "",
-    cookTime: params?.cookTime || "",
-    q: params?.q || "",
-  };
+  const initialState = useMemo(
+    () => ({
+      prepTime: params?.prepTime || "",
+      cookTime: params?.cookTime || "",
+      q: params?.q || "",
+    }),
+    [params.prepTime, params.cookTime, params.q]
+  );
 
   const { filters, updateFilter, clearFilter } =
     useFilterBasedOnChange(initialState);

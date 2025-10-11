@@ -10,6 +10,7 @@ interface contentType {
   prefetch?: boolean;
   scroll?: boolean;
   rel?: 'prev' | 'next'; 
+  replace?: boolean;
 }
 
 export const ButtonAsLink = ({ content, stylesClass, link, ...props }: contentType) => {

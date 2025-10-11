@@ -5,6 +5,7 @@ import { FetchRecipesParams } from "@/lib/api/fetchRecipes";
 import styles from "./recipesListSection.module.css";
 import { RecipesListJsonLd } from "./RecipeJsonLd";
 import { PaginationComponent } from "../pagination/PaginationComponent";
+import { NotFoundByFilter } from "./NotFoundByFilter";
 
 interface RecipesListSectionProps {
   recipeList: RecipeResponse;
@@ -15,6 +16,8 @@ export const RecipesListSection = ({
   recipeList,
   params,
 }: RecipesListSectionProps) => {
+  const isEmpty = !recipeList.data.length;
+
   return (
     <section>
       <h1 className="visually-hidden">
@@ -22,11 +25,15 @@ export const RecipesListSection = ({
         Meals Under 30 Minutes.
       </h1>
       <RecipesForm params={params} />
-      <ul className={styles.recipesList}>
-        {recipeList.data.map((recipe) => (
-          <RecipeCard key={recipe.id} recipe={recipe} />
-        ))}
-      </ul>
+      {isEmpty ? (
+        <NotFoundByFilter />
+      ) : (
+        <ul className={styles.recipesList}>
+          {recipeList.data.map((recipe) => (
+            <RecipeCard key={recipe.id} recipe={recipe} />
+          ))}
+        </ul>
+      )}
       <RecipesListJsonLd recipeList={recipeList} />
       <PaginationComponent pagination={recipeList.pagination} params={params} />
     </section>

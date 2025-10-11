@@ -11,7 +11,6 @@ export type FetchRecipesParams = {
 export const fetchRecipes = async (
   params?: FetchRecipesParams
 ): Promise<RecipeResponse> => {
-  console.log("testing fetchRecipes params:", params);
   const searchParams = new URLSearchParams(params);
   const isServer = typeof window === "undefined";
 
