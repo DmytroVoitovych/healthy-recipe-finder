@@ -4,7 +4,7 @@ import { BaseMenuOptionSelect } from "../shared/BaseMenuOptionSelect";
 import styles from "./recipesForm.module.css";
 import { RecipesSearchInput } from "./RecipesSearchInput";
 import { FetchRecipesParams } from "@/lib/api/fetchRecipes";
-import { use, useEffect, useMemo } from "react";
+import { useMemo } from "react";
 
 interface RecipesFormProps {
   params: FetchRecipesParams;
@@ -54,14 +54,14 @@ export const RecipesForm = ({ params }: RecipesFormProps) => {
         containerClass={styles.timeRadioMenuContainer}
         updateField={updateFilter}
         clearField={clearFilter}
-        checkedValue={filters[MAX_PREP_TIME.radioName] as string}
+        checkedValue={filters[MAX_PREP_TIME.radioName]}
       />
       <BaseMenuOptionSelect
         {...MAX_COOK_TIME}
         containerClass={styles.timeRadioMenuContainer}
         updateField={updateFilter}
         clearField={clearFilter}
-        checkedValue={filters[MAX_COOK_TIME.radioName] as string}
+        checkedValue={filters[MAX_COOK_TIME.radioName]}
       />
       <RecipesSearchInput
         updateField={updateFilter}

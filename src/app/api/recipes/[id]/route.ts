@@ -4,9 +4,9 @@ import { CACHE_CONTROL_HEADER } from "../../casheConfig";
 
 export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
   try {
-    if (recipesMap.size === 0 && preloadPromise) {
+    // if (recipesMap.size === 0 && preloadPromise) { // uncomment if not awaited in middleware
       await preloadPromise;
-    }
+    // }
 
     const id = params.id;
 
