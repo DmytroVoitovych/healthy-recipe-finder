@@ -1,3 +1,24 @@
 .breadcrumb{
-    
+margin-bottom: 16px;    
+}
+
+.breadcrumbList {
+  display: flex;
+  color: var(--color-text-primary);
+
+  & > li:not(:last-child)::after {
+    content: "/";
+    margin: 0 6px;
+    opacity: 0.6;
+  }
+
+  & > li:not(:last-child) {
+    opacity: 0.6;
+  }
+
+  & > li:last-child {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
 }

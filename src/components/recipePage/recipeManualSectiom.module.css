@@ -1,0 +1,30 @@
+.recipeManualSection {
+  & h3 {
+    color: var(--color-text-primary);
+    margin-bottom: 16px;
+  }
+
+  & :where(ul, ol) {
+    list-style-image: url(/icon-bullet-point.svg);
+    list-style-position: inside;
+
+    & span {
+      vertical-align: super;
+    }
+
+    & li {
+      --list-default-margin: 5.6px;
+      --ico-width: 32px;
+      --list-desired-margin: 8px;
+      --main-pad-gap: calc(var(--ico-width) + var(--list-desired-margin));
+      --indent-width: calc((-1 * var(--ico-width)) - var(--list-default-margin));
+
+      text-indent: var(--indent-width);
+      padding-left: var(--main-pad-gap);
+    }
+
+    & > li:not(:last-child) {
+      margin-bottom: 8px;
+    }
+  }
+}

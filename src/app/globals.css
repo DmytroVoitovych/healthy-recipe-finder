@@ -204,4 +204,21 @@ footer {
   }
 }
 
+.hasDivider::after {
+  content: "";
+  background-color: var(--color-border-medium);
+  width: calc(100% + (var(--container-padding) * 2));
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  left: calc(0px - var(--container-padding));
+  right: calc(0px - var(--container-padding));
 
+  @media (min-width: $xl) {
+    --container-padding-extra: calc(var(--container-padding) + 36px);
+
+    left: calc(0px - var(--container-padding-extra));
+    right: calc(0px - var(--container-padding-extra));
+    width: calc(100% + (var(--container-padding-extra) * 2));
+  }
+}

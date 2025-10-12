@@ -7,7 +7,7 @@
   );
   --grid-col-min-size-calc: 288px;
 
-   @media (min-width: $sm) {
+  @media (min-width: $sm) {
     --grid-col-min-size-calc: calc(768px / 2 - var(--grid-gap));
   }
 
@@ -19,3 +19,7 @@
   );
 }
 
+.viewRecipeBtn {
+  padding: 12px 32px;
+  border-radius: 999px;
+}

@@ -2,8 +2,8 @@ import Link from "next/link";
 import styles from "./breadcrumbComponent.module.css";
 
 export const BreadcrumbComponent = ({children}:{children:string}) => (
-  <nav aria-label="Breadcrumb" className={styles.breadcrumb}>
-    <ol>
+  <nav aria-label="Breadcrumb" className={`text-preset-7 ${styles.breadcrumb}`} >
+    <ol className={styles.breadcrumbList}>
       <li>
         <Link href="/recipes">Recipes</Link>
       </li>

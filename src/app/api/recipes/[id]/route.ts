@@ -2,15 +2,16 @@ import { NextRequest, NextResponse } from "next/server";
 import { recipesMap, preloadPromise } from "@/server/preloadRecipes";
 import { CACHE_CONTROL_HEADER } from "../../casheConfig";
 
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(req: NextRequest, ctx: RouteContext<"/api/recipes/[id]">) {
   try {
-    // if (recipesMap.size === 0 && preloadPromise) { // uncomment if not awaited in middleware
-      await preloadPromise;
-    // }
+    
+    if (recipesMap.size === 0 && preloadPromise) { // uncomment if not awaited in middleware
+    await preloadPromise;
+    }
 
-    const id = params.id;
+    const { id } = await ctx.params;
 
-    if (!id || typeof id !== "string")
+    if (!id?.trim())
       return NextResponse.json({ error: "Missing or invalid ID" }, { status: 400 });
 
     const recipe = recipesMap.get(id);

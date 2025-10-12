@@ -1,4 +1,4 @@
-import { BreadcrumbComponent } from "@/components/recipePage/BreadcrumbComponent";
+import { RecipePageMainContent } from "@/components/recipePage/RecipePageMainContent";
 import { fetchRecipeById } from "@/lib/api/fetchRecipeById";
 
 export default async function RecipePageById(
@@ -6,11 +6,11 @@ export default async function RecipePageById(
 ) {
   const id = (await props.params)?.id;
   const recipe = await fetchRecipeById(id);
-console.log(recipe);
+  
   if (!recipe) return <div>Recipe not found</div>;
-  return <>
-  <BreadcrumbComponent >
-  {recipe.title}
-  </BreadcrumbComponent>
-  </>;
+  return (
+    <>
+      <RecipePageMainContent recipe={recipe} />
+    </>
+  );
 }

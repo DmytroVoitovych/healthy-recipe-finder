@@ -6,6 +6,7 @@ import styles from "./recipesListSection.module.css";
 import { RecipesListJsonLd } from "./RecipeJsonLd";
 import { PaginationComponent } from "../pagination/PaginationComponent";
 import { NotFoundByFilter } from "./NotFoundByFilter";
+import { ButtonAsLink } from "../shared/ButtonAsLink";
 
 interface RecipesListSectionProps {
   recipeList: RecipeResponse;
@@ -30,7 +31,17 @@ export const RecipesListSection = ({
       ) : (
         <ul className={styles.recipesList}>
           {recipeList.data.map((recipe) => (
-            <RecipeCard key={recipe.id} recipe={recipe} />
+            <li key={recipe.id}>
+              <RecipeCard recipe={recipe}>
+                <ButtonAsLink
+                  content="View Recipe"
+                  stylesClass={`${styles.viewRecipeBtn} text-preset-8`}
+                  link={`/recipes/${recipe.id}/${encodeURIComponent(recipe.title)}`}
+                  aria-label={`View full recipe for ${recipe.title}`}
+                  itemProp="url"
+                />
+              </RecipeCard>
+            </li>
           ))}
         </ul>
       )}
