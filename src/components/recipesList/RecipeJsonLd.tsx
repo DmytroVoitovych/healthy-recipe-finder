@@ -1,17 +1,17 @@
-import { RecipeResponse } from "@/lib/api/fetchRecipesTypes";
+import { Recipe } from "@/lib/api/fetchRecipesTypes";
 import Head from "next/head";
 import { getFirstSentence } from "./../../utils/componentHelpers/getFirstSentence";
 
 export const RecipesListJsonLd = ({
   recipeList,
 }: {
-  recipeList: RecipeResponse;
+  recipeList: Recipe[];
 }) => {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: "Healthy Recipe Collection - Quick Mediterranean, Vegetarian and High-Protein Meals Under 30 Minutes",
-    itemListElement: recipeList.data.map((recipe, index) => ({
+    itemListElement: recipeList.map((recipe, index) => ({
       "@type": "ListItem",
       position: index + 1,
       item: {

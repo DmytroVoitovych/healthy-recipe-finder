@@ -1,0 +1,14 @@
+.moreRecipesSection{
+position: relative;    
+padding: 48px 0;    
+
+ @media (min-width: $lg) {
+  padding-bottom: 96px;
+  padding-top: 64px;  
+} 
+
+& > h2{
+margin-bottom: 24px;    
+color: var(--color-text-primary);
+}
+}

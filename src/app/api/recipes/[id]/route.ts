@@ -1,21 +1,28 @@
 import { NextRequest, NextResponse } from "next/server";
 import { recipesMap, preloadPromise } from "@/server/preloadRecipes";
 import { CACHE_CONTROL_HEADER } from "../../casheConfig";
+import { getRandomIds } from "@/utils/routerHelpers/getRandomIds";
+import { Recipe } from "@/lib/api/fetchRecipesTypes";
+import { getSimilarRecipes } from "@/utils/routerHelpers/getSimilarRecipes";
 
 export async function GET(req: NextRequest, ctx: RouteContext<"/api/recipes/[id]">) {
   try {
-    
-    if (recipesMap.size === 0 && preloadPromise) { // uncomment if not awaited in middleware
-    await preloadPromise;
+    if (recipesMap.size === 0 && preloadPromise) {
+      // uncomment if not awaited in middleware
+      await preloadPromise;
     }
 
+    const url = new URL(req.url);
+    const similarParam = url.searchParams.get("similar");
     const { id } = await ctx.params;
 
     if (!id?.trim())
       return NextResponse.json({ error: "Missing or invalid ID" }, { status: 400 });
 
     const recipe = recipesMap.get(id);
+    const similar = getSimilarRecipes(recipesMap, similarParam,id);
 
+    
     if (!recipe) {
       return NextResponse.json(
         { error: `Recipe with id=${id} not found` },
@@ -23,7 +30,12 @@ export async function GET(req: NextRequest, ctx: RouteContext<"/api/recipes/[id]
       );
     }
 
-    return NextResponse.json(recipe, {
+    const data = {
+      recipe,
+      similar,
+    };
+
+    return NextResponse.json(data, {
       headers: {
         "Cache-Control": CACHE_CONTROL_HEADER,
         "Content-Type": "application/json",

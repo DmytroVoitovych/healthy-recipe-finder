@@ -1,4 +1,6 @@
 .recipeManualSection {
+
+
   & h3 {
     color: var(--color-text-primary);
     margin-bottom: 16px;
@@ -12,7 +14,7 @@
       vertical-align: super;
     }
 
-    & li {
+    & > li {
       --list-default-margin: 5.6px;
       --ico-width: 32px;
       --list-desired-margin: 8px;
@@ -21,6 +23,10 @@
 
       text-indent: var(--indent-width);
       padding-left: var(--main-pad-gap);
+    }
+
+    & > li::marker{
+    height: 1cap;
     }
 
     & > li:not(:last-child) {

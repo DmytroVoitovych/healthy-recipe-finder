@@ -14,7 +14,7 @@ export default async function Recipes(props: { searchParams: SearchParams }) {
     <>
       <RecipesExploreSection />
       <RecipesListSection recipeList={initialData} params={params} />
-      <RecipesListJsonLd recipeList={initialData} />
+      <RecipesListJsonLd recipeList={initialData.data} />
     </>
   );
 }

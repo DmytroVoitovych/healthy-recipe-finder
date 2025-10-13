@@ -1,6 +1,10 @@
 .recipePageSection {
   position: relative;  
   padding: 48px 0;
+
+  @media (min-width: $lg) {
+  padding-bottom: 64px;  
+} 
 }
 
 .recipePage {

@@ -3,6 +3,7 @@ import { preloadPromise, recipesMap } from "@/server/preloadRecipes";
 import { filterRecipes } from "@/utils/routerHelpers/filterRecipes";
 import { NextRequest, NextResponse } from "next/server";
 import { CACHE_CONTROL_HEADER } from "../casheConfig";
+import { getRandomIds } from "@/utils/routerHelpers/getRandomIds";
 
 const PAGE_SIZE = 8;
 const MAX_QUERY_LENGTH = 200;
@@ -40,6 +41,7 @@ export async function GET(req: NextRequest) {
     }
 
     const filtered = filterRecipes(search, prepTime, cookTime, recipesMap);
+    const randomIds = getRandomIds(recipesMap);
 
     const total = filtered.length;
     const totalPages = Math.ceil(total / PAGE_SIZE);
@@ -58,6 +60,7 @@ export async function GET(req: NextRequest) {
         hasNext: page < totalPages - 1,
         hasPrev: page > 0,
       },
+      randomSample:randomIds
     };
 
     if (search) response.search = search;

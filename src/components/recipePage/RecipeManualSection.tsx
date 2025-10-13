@@ -1,4 +1,4 @@
-import styles from "./recipeManualSectiom.module.css";
+import styles from "./recipeManualSection.module.css";
 
 interface RecipeManualSectionProps {
   title: string;

@@ -148,6 +148,7 @@ export interface RecipeResponse {
     hasPrev: boolean;
   };
   search?: string;
+  randomSample:string[];
 }
 
 

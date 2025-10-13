@@ -38,7 +38,7 @@ export const RecipePageMainContent = ({ recipe }: { recipe: Recipe }) => {
           {isEmptyInstructions ? (
             <ol className="text-preset-6">
               {instructionList.map((step) => (
-                <li key={step.number}>
+                <li key={step.number + step.step.slice(5)}>
                   <span>{step.step}</span>
                 </li>
               ))}

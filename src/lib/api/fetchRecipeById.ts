@@ -1,7 +1,12 @@
 import { getBaseUrl } from "@/utils/fetchHelpers/getBaseUrl";
 import { Recipe } from "./fetchRecipesTypes";
 
-export const fetchRecipeById = async (id: string): Promise<Recipe | null> => {
+interface RecipeByIdData {
+  recipe: Recipe;
+  similar: Recipe[];
+}
+
+export const fetchRecipeById = async (id: string): Promise<RecipeByIdData | null> => {
   if (!id?.trim()) return null;
   const isServer = typeof window === "undefined";
 
@@ -13,7 +18,7 @@ export const fetchRecipeById = async (id: string): Promise<Recipe | null> => {
 
     if (!response.ok) return null;
 
-    const data: Recipe = await response.json();
+    const data: RecipeByIdData = await response.json();
     return data;
   } catch (error) {
     console.error(`Error fetching recipe ${id}:`, error);
