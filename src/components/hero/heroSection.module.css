@@ -1,6 +1,5 @@
 .sectionHero {
   text-align: left;
-  
 
   @media (min-width: $lg) {
     text-align: center;
@@ -93,8 +92,8 @@
     z-index: -1;
     transform: rotate(-12deg);
 
-    @media (min-width:$xl){
-      left: calc(0px - var(--container-padding) - 36px - 1.5%);  
+    @media (min-width: $xl) {
+      left: calc(0px - var(--container-padding) - 36px - 1.5%);
       transform: rotate(-9deg);
     }
   }

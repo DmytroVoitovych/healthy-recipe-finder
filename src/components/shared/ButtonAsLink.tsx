@@ -15,7 +15,7 @@ interface contentType {
 
 export const ButtonAsLink = ({ content, stylesClass, link, ...props }: contentType) => {
   return (
-    <Link href={link} {...props} className={`${stylesClass} ${styles.btnConstant}`}>
+    <Link href={link} {...props} className={`${stylesClass} ${styles.btnConstant}`} >
       {content}
     </Link>
   );

@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { recipesMap, preloadPromise } from "@/server/preloadRecipes";
 import { CACHE_CONTROL_HEADER } from "../../casheConfig";
-import { getRandomIds } from "@/utils/routerHelpers/getRandomIds";
-import { Recipe } from "@/lib/api/fetchRecipesTypes";
 import { getSimilarRecipes } from "@/utils/routerHelpers/getSimilarRecipes";
 
 export async function GET(req: NextRequest, ctx: RouteContext<"/api/recipes/[id]">) {
@@ -20,9 +18,8 @@ export async function GET(req: NextRequest, ctx: RouteContext<"/api/recipes/[id]
       return NextResponse.json({ error: "Missing or invalid ID" }, { status: 400 });
 
     const recipe = recipesMap.get(id);
-    const similar = getSimilarRecipes(recipesMap, similarParam,id);
+    const similar = getSimilarRecipes(recipesMap, similarParam, id);
 
-    
     if (!recipe) {
       return NextResponse.json(
         { error: `Recipe with id=${id} not found` },

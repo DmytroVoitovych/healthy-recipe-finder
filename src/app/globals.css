@@ -222,3 +222,87 @@ footer {
     width: calc(100% + (var(--container-padding-extra) * 2));
   }
 }
+
+/* костиль так як вьюв транзішо все ще не стабільний і перекриває даже топ леєр */
+@media (max-width: 1023.9) {
+  main {
+    translate: 0 0;
+    transition: translate 150ms ease-out;
+    will-change: translate;
+  }
+
+  html:has([data-menu="true"]) {
+    & main {
+      translate: 0 calc(var(--menuBottom));
+      transition: translate 150ms ease-in;
+      will-change: translate;
+    }
+  }
+}
+
+::view-transition-new(.scale-in) {
+  animation-name: scaleIn;
+  animation-duration: 180ms;
+  animation-timing-function: ease-in-out;
+}
+
+::view-transition-old(.scale-in) {
+  animation-name: scaleOut;
+  animation-duration: 180ms;
+  animation-timing-function: ease-in-out;
+}
+
+::view-transition-new(.scale-out) {
+  animation-name: scaleInQuick;
+  animation-duration: 160ms;
+  animation-timing-function: ease-out;
+}
+::view-transition-old(.scale-out) {
+  animation-name: scaleOutQuick;
+  animation-duration: 160ms;
+  animation-timing-function: ease-in;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.94);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.04);
+    opacity: 0;
+  }
+}
+
+@keyframes scaleInQuick {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleOutQuick {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.1);
+    opacity: 0;
+  }
+}

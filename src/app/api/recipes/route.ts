@@ -10,7 +10,10 @@ const MAX_QUERY_LENGTH = 200;
 
 export async function GET(req: NextRequest) {
   try {
-    await preloadPromise; // remove await if already awaited in middleware (before production)
+     if (recipesMap.size === 0 && preloadPromise) {
+      // uncomment if not awaited in middleware
+      await preloadPromise;
+    }
 
     const { searchParams } = req.nextUrl;
     const search = searchParams.get("q")?.toLowerCase().trim() || "";

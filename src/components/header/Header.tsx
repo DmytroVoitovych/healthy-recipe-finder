@@ -1,27 +1,47 @@
 "use client";
 import styles from "./header.module.css";
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Logo } from "../logo/Logo";
 import { HamburgerMenu } from "@/utils/svgimports";
 import { HeaderNavigation } from "./navigation/HeaderNavigation";
 import { ButtonAsLink } from "../shared/ButtonAsLink";
+import { useGetCoordinateForPopup } from "@/utils/customHook/useGetCoordinateForPopup";
+import { flushSync } from "react-dom";
 
 const buttonContent = "Browse recipes";
 const desktopQuery = "(min-width:1024px)";
 
+
 const Header = () => {
   const [show, setShow] = useState<boolean>(false);
   const [forceVisible, setForceVisible] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  const { bottom = 0, setElementRect } = useGetCoordinateForPopup(menuRef);
 
   const toggleMenu = () => {
-    setShow((prev) => !prev);
+    flushSync(() => setShow((prev) => !prev));
   };
+
+  useEffect(() => {
+    const checkDesktop = window.matchMedia(desktopQuery);
+
+    if (checkDesktop.matches) return;
+    
+    const paddingGap = bottom - 48 * 2;
+    const positionY = bottom ? paddingGap : bottom;
+
+    document.documentElement.style.setProperty("--menuBottom", `${positionY}px`);
+  }, [bottom]);
 
   useLayoutEffect(() => {
     const checkDesktop = window.matchMedia(desktopQuery);
 
     const updateVisibility = (isDesktop: boolean) => {
-      if (isDesktop) setForceVisible(true); // desktop always visible
+      if (isDesktop) {
+        document.documentElement.style.removeProperty("--menuBottom");
+        setForceVisible(true);
+      } // desktop always visible
       else setForceVisible(show); // mobile depens on menu btn
     };
 
@@ -50,7 +70,12 @@ const Header = () => {
         >
           <HamburgerMenu />
         </button>
-        <div className={styles.navContainer}>
+
+        <div
+          className={styles.navContainer}
+          ref={menuRef}
+          onTransitionEnd={setElementRect}
+        >
           <HeaderNavigation isVisible={forceVisible} />
           <ButtonAsLink
             content={buttonContent}

@@ -6,9 +6,11 @@
   border-bottom: 1px solid var(--color-border-medium);
   position: relative;
 
-  & > .rightBlock{
-  flex-grow: 1;  
+  & > .rightBlock {
+    flex-grow: 1;
   }
+
+ 
 }
 
 .header[data-menu="false"] .navContainer {
@@ -64,7 +66,7 @@
   background-color: var(--color-button-menu-bg);
 
   @supports (-moz-user-select: none) {
-  margin-left: auto;  
+    margin-left: auto;
   }
 
   @media (min-width: $lg) {
@@ -84,7 +86,6 @@
   right: var(--container-padding);
   z-index: 999;
 
-  
   @media (min-width: $lg) {
     position: unset;
     display: flex;
@@ -107,5 +108,3 @@
   line-height: 1.4;
   letter-spacing: -0.5px;
 }
-
-
