@@ -19,7 +19,7 @@ export async function GET(req: NextRequest) {
     const search = searchParams.get("q")?.toLowerCase().trim() || "";
     const prepTime = parseInt(searchParams.get("prepTime") || "");
     const cookTime = parseInt(searchParams.get("cookTime") || "");
-    const diets = searchParams.get("diets") || "";
+    const diets = searchParams.get("diet") || "";
 
     if (search.length > MAX_QUERY_LENGTH) {
       return NextResponse.json(

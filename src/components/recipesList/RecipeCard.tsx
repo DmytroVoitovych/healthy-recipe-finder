@@ -4,6 +4,7 @@ import styles from "./recipeCard.module.css";
 import { getFirstSentence } from "@/utils/componentHelpers/getFirstSentence";
 import { RecipeTimeInfoComponent } from "./RecipeTimeInfoComponent";
 import { ServingsIco } from "@/utils/svgimports";
+import { StoreButton } from "../shared/StoreButton";
 
 interface RecipeCardProps {
   recipe: Recipe;
@@ -45,6 +46,7 @@ export const RecipeCard = ({ recipe, children, className }: RecipeCardProps) => 
       itemScope
       itemType="https://schema.org/Recipe"
     >
+      <StoreButton id={id.toString()} recipe={recipe} />
       <section className={className || styles.recipeCardSection}>
         <Image
           alt={title + "healthy recipe"}

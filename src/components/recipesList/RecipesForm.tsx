@@ -42,7 +42,7 @@ optionList:[
 ],
 legend: "Select your diets",
 popoverId: "diets-menu",
-radioName: "diets",
+radioName: "diet",
 };
 
 const SEARCH = {

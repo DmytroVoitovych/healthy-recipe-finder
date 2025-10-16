@@ -10,6 +10,8 @@ import ArrowDownIco from "@/app/assets/images/icon-chevron-down.svg";
 import ServingsIco from "@/app/assets/images/icon-servings.svg";
 import PrepTimeIco from "@/app/assets/images/icon-prep-time.svg";
 import CookTimeIco from "@/app/assets/images/icon-cook-time.svg";
+import SaveIco from "@/app/assets/images/save-icon.svg";
+import RemoveIco from '@/app/assets/images/remove-ico.svg';
 
 export {
   MainLogo,
@@ -24,4 +26,6 @@ export {
   ServingsIco,
   PrepTimeIco,
   CookTimeIco,
+  SaveIco,
+  RemoveIco
 };

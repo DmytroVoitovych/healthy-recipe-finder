@@ -1,0 +1,31 @@
+.storeBtn {
+  display: flex;
+  position: absolute;
+  fill: var(--color-text-primary);
+  stroke: var(--color-background-primary);
+}
+
+@keyframes toastSlideInOut {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  90% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+}
+
+.toastAnimation {
+  animation: toastSlideInOut var(--duration, 3s) ease-in-out forwards;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  will-change: transform, opacity;
+}

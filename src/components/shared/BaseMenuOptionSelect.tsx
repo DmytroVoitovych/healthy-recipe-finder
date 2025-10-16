@@ -41,10 +41,10 @@ export const BaseMenuOptionSelect = ({
 
   const selectPlaceholder = checkedValue
     ? `${placeholder}: ${
-        radioName === "diets" ? checkedValue : parseInt(checkedValue)
+        radioName === "diet" ? checkedValue : parseInt(checkedValue)
       }`
     : placeholder;
-
+console.log(selectPlaceholder);
   return (
     <>
       <button
