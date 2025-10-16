@@ -26,6 +26,25 @@ const MAX_COOK_TIME = {
   radioName: "cookTime",
 };
 
+const DIETS = {
+placeholder: "Diets",
+optionList:[
+  "gluten free",
+  "dairy free",
+  "lacto ovo vegetarian",
+  "vegan",
+  "pescatarian",
+  "ketogenic",
+  "paleo",
+  "primal",
+  "whole 30",
+  "fodmap"
+],
+legend: "Select your diets",
+popoverId: "diets-menu",
+radioName: "diets",
+};
+
 const SEARCH = {
   searchName: "q",
 };
@@ -36,8 +55,9 @@ export const RecipesForm = ({ params }: RecipesFormProps) => {
       prepTime: params?.prepTime || "",
       cookTime: params?.cookTime || "",
       q: params?.q || "",
+      diet: params?.diet || ""
     }),
-    [params.prepTime, params.cookTime, params.q]
+    [params.prepTime, params.cookTime, params.q, params.diet]
   );
 
   const { filters, updateFilter, clearFilter } =
@@ -62,6 +82,13 @@ export const RecipesForm = ({ params }: RecipesFormProps) => {
         updateField={updateFilter}
         clearField={clearFilter}
         checkedValue={filters[MAX_COOK_TIME.radioName]}
+      />
+      <BaseMenuOptionSelect
+        {...DIETS}
+        containerClass={styles.timeRadioMenuContainer}
+        updateField={updateFilter}
+        clearField={clearFilter}
+        checkedValue={filters[DIETS.radioName]}
       />
       <RecipesSearchInput
         updateField={updateFilter}

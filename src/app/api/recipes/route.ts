@@ -10,7 +10,7 @@ const MAX_QUERY_LENGTH = 200;
 
 export async function GET(req: NextRequest) {
   try {
-     if (recipesMap.size === 0 && preloadPromise) {
+    if (recipesMap.size === 0 && preloadPromise) {
       // uncomment if not awaited in middleware
       await preloadPromise;
     }
@@ -19,6 +19,7 @@ export async function GET(req: NextRequest) {
     const search = searchParams.get("q")?.toLowerCase().trim() || "";
     const prepTime = parseInt(searchParams.get("prepTime") || "");
     const cookTime = parseInt(searchParams.get("cookTime") || "");
+    const diets = searchParams.get("diets") || "";
 
     if (search.length > MAX_QUERY_LENGTH) {
       return NextResponse.json(
@@ -43,7 +44,7 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    const filtered = filterRecipes(search, prepTime, cookTime, recipesMap);
+    const filtered = filterRecipes(search, prepTime, cookTime, diets, recipesMap);
     const randomIds = getRandomIds(recipesMap);
 
     const total = filtered.length;
@@ -63,7 +64,7 @@ export async function GET(req: NextRequest) {
         hasNext: page < totalPages - 1,
         hasPrev: page > 0,
       },
-      randomSample:randomIds
+      randomSample: randomIds,
     };
 
     if (search) response.search = search;

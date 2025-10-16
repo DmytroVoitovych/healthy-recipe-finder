@@ -39,12 +39,14 @@ export const filterRecipes = (
   search: string,
   prepTime: number,
   cookTime: number,
+  diets: string,
   recipesMap: Map<string, Recipe>
 ): Recipe[] => {
   const recipeArr = [...recipesMap.values()];
-  if (!search && !prepTime && !cookTime) return recipeArr;
+  if (!search && !prepTime && !cookTime && !diets) return recipeArr;
 
   const normSearch = normalizeText(search);
+  const normDiets = normalizeText(diets);
 
   const result: Recipe[] = [];
 
@@ -61,8 +63,9 @@ export const filterRecipes = (
     `;
 
     const normCombinedText = normalizeText(combinedText);
+    const dietsFit = recipe.diets.join(",").includes(normDiets);
 
-    if (normCombinedText.includes(normSearch)) result.push(recipe);
+    if (normCombinedText.includes(normSearch) && dietsFit) result.push(recipe);
   }
 
   if (search && (prepTime || cookTime))

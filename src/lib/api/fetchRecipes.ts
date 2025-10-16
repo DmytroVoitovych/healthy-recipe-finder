@@ -6,6 +6,7 @@ export type FetchRecipesParams = {
   page?: string;
   prepTime?: string;
   cookTime?: string;
+  diet?: string;
 };
 
 export const fetchRecipes = async (

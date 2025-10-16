@@ -53,6 +53,7 @@
     background-color: var(--color-background-primary);
 
     width: var(--width-for-small-devices);
+    max-height: 300px;
     text-align: center;
     padding: 8px;
 

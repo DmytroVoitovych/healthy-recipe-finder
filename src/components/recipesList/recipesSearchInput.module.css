@@ -23,11 +23,24 @@
       max-width: 320px;
       position: absolute;
       translate: 50% -50px;
+      transition: all 250ms ease;
+      transform-origin: center center;
     }
 
     @media (min-width: $md) {
       position: unset;
       translate: unset;
+      transition: all 250ms ease;
+
+      @media (max-width: 942px) {
+        &:focus {
+          position: absolute;
+          translate: -50% -54px;
+          left: 50%;
+          transition: all 250ms ease-in-out;
+          transform-origin: center center;
+        }
+      }
     }
   }
 }

@@ -11,7 +11,6 @@ import { flushSync } from "react-dom";
 const buttonContent = "Browse recipes";
 const desktopQuery = "(min-width:1024px)";
 
-
 const Header = () => {
   const [show, setShow] = useState<boolean>(false);
   const [forceVisible, setForceVisible] = useState(false);
@@ -27,11 +26,12 @@ const Header = () => {
     const checkDesktop = window.matchMedia(desktopQuery);
 
     if (checkDesktop.matches) return;
-    
+
     const paddingGap = bottom - 48 * 2;
     const positionY = bottom ? paddingGap : bottom;
 
-    document.documentElement.style.setProperty("--menuBottom", `${positionY}px`);
+    if (positionY > 0)
+      document.documentElement.style.setProperty("--menuBottom", `${positionY}px`);
   }, [bottom]);
 
   useLayoutEffect(() => {
