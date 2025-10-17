@@ -1,4 +1,5 @@
 import { createElement, ReactNode, useEffect, useRef, useState } from "react";
+import { flushSync } from "react-dom";
 
 interface ToastConfig {
   containerClass?: string;
@@ -15,14 +16,13 @@ interface ToastOutput {
 }
 
 const fallbackClass: React.CSSProperties = {
-  position: "fixed",
-  top: "20px",
-  right: "20px",
   zIndex: 999,
   pointerEvents: "none",
   display: "grid",
   gap: "8px",
-  backdropFilter: "blur(10px)",
+  overflow: "hidden",
+  borderRadius: "8px",
+  marginLeft: "auto",
 };
 
 const fallbackItemPolite: React.CSSProperties = {
@@ -37,9 +37,12 @@ const fallbackItemPolite: React.CSSProperties = {
 
 const fallbackItemAssertive: React.CSSProperties = {
   padding: "16px 20px",
-  border: "1px solid #8B0000",
-  backgroundColor: "#FF0000",
+  backgroundColor: "#8B0000",
+  border: "1px solid #FF0000",
   color: "#ffffff",
+  borderRadius: "8px",
+  display: "flex",
+  alignItems: "center",
 };
 
 const icoFallback: React.CSSProperties = {
@@ -47,8 +50,8 @@ const icoFallback: React.CSSProperties = {
 };
 
 export const useSimpleToast = (
-  toastMessage: string,
-  config: ToastConfig
+  toastMessage: string = "",
+  config: ToastConfig = {}
 ): ToastOutput => {
   const [list, setList] = useState<ReactNode[]>([]);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -60,6 +63,7 @@ export const useSimpleToast = (
     icoClass = "",
     animationClass,
   } = config;
+  const toastRef = useRef<HTMLDivElement>(null);
 
   const showToast = (type: "polite" | "assertive" = "polite", message?: string) => {
     const itemFallback =
@@ -91,13 +95,17 @@ export const useSimpleToast = (
       </>
     );
 
-    setList((prev) => [...prev, toast]);
+    flushSync(() => setList((prev) => [...prev, toast]));
+    toastRef.current?.showPopover();
 
-    timeoutRef.current = setTimeout(
-      () => setList((prev) => prev.slice(1)),
-      duration
-    );
+    timeoutRef.current = setTimeout(() => {
+      setList((prev) => prev.slice(1));
+    }, duration);
   };
+
+  useEffect(() => {
+    if (!list.length) toastRef.current?.hidePopover();
+  }, [list.length]);
 
   useEffect(
     () => () => {
@@ -107,13 +115,17 @@ export const useSimpleToast = (
   );
 
   return {
-    list: (
+    list: list.length ? (
       <div
         {...(containerClass ? {} : { style: fallbackClass })}
         className={containerClass}
+        ref={toastRef}
+        popover="manual"
       >
         {list}
       </div>
+    ) : (
+      <></>
     ),
     showToast,
   };

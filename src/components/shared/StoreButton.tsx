@@ -9,6 +9,7 @@ import { useSimpleToast } from "@/utils/customHook/useSimpleToast";
 interface StoreButtonProps {
   id: string;
   recipe: Recipe;
+  showToast: () => void;
 }
 
 const KEY = "favoriteRecipes";
