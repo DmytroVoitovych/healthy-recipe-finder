@@ -44,7 +44,7 @@ export const BaseMenuOptionSelect = ({
         radioName === "diet" ? checkedValue : parseInt(checkedValue)
       }`
     : placeholder;
-console.log(selectPlaceholder);
+
   return (
     <>
       <button
@@ -85,6 +85,7 @@ console.log(selectPlaceholder);
             aria-label={`Clear ${placeholder.toLowerCase()} selection`}
             onClick={() => clearField(radioName)}
             className="text-preset-9"
+            disabled={!!!checkedValue}
           >
             Clear
           </button>

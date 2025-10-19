@@ -15,8 +15,10 @@ export const fetchRecipes = async (
   const searchParams = new URLSearchParams(params);
   const isServer = typeof window === "undefined";
 
-  if (params?.page !== undefined)
-    searchParams.set("page", (+params.page - 1).toString());
+  if (params?.page !== undefined) {
+    const safePage = Math.max(+params.page, 1);
+    searchParams.set("page", (safePage - 1).toString());
+  }
 
   const qs = searchParams.toString();
   const baseUrl = getBaseUrl();

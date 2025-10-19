@@ -54,6 +54,7 @@ export const RecipeCard = ({ recipe, children, className }: RecipeCardProps) => 
           {...imgProps}
           quality="100"
           itemProp="image"
+          // priority={true}
         />
         <div>
           <h2 className="text-preset-5" itemProp="name">

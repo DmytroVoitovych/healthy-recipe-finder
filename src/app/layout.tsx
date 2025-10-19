@@ -3,7 +3,7 @@ import "./globals.css";
 import localFont from "next/font/local";
 import { Header } from "@/components/header/Header";
 import { Footer } from "@/components/footer/Footer";
-import { unstable_ViewTransition as ViewTransition } from "react";
+
 
 const nunitoSans = localFont({
   src: [
@@ -50,7 +50,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <body
         className={`${nunito.variable} ${nunitoSans.variable} ${recoleta.variable}`}
       >

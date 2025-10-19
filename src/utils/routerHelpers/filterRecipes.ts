@@ -36,10 +36,10 @@ const getResultsByTime = (
 };
 
 export const filterRecipes = (
-  search: string,
-  prepTime: number,
-  cookTime: number,
-  diets: string,
+  search: string = '',
+  prepTime: number = 0,
+  cookTime: number = 0,
+  diets: string='',
   recipesMap: Map<string, Recipe>
 ): Recipe[] => {
   const recipeArr = [...recipesMap.values()];

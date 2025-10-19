@@ -5,14 +5,14 @@ import { Recipe } from "@/lib/api/fetchRecipesTypes";
 import { useEffect, useState } from "react";
 import { getFavorites } from "@/lib/api/getFavorites";
 import { useSimpleToast } from "@/utils/customHook/useSimpleToast";
+import { setLocalStorageSignal } from "@/utils/сustomEvents/setLocalStorageSignal";
 
 interface StoreButtonProps {
   id: string;
   recipe: Recipe;
-  showToast: () => void;
 }
 
-const KEY = "favoriteRecipes";
+export const KEY = "favoriteRecipes";
 
 export const StoreButton = ({ id, recipe }: StoreButtonProps) => {
   const [isExist, setExist] = useState(false);
@@ -37,6 +37,7 @@ export const StoreButton = ({ id, recipe }: StoreButtonProps) => {
     else delete data[id];
 
     localStorage.setItem(KEY, JSON.stringify(data));
+    setLocalStorageSignal(KEY,id);
     showToast();
   };
 

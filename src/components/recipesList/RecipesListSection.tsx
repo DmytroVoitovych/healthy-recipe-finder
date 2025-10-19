@@ -9,17 +9,21 @@ import { getLocalRecommendations } from "@/utils/componentHelpers/getLocalRecomm
 interface RecipesListSectionProps {
   recipeList: RecipeResponse;
   params: FetchRecipesParams;
+  className?: string;
+  route?: "/recipes" | "/favorite";
 }
 
 export const RecipesListSection = ({
   recipeList,
   params,
+  className,
+  route = "/recipes",
 }: RecipesListSectionProps) => {
   const isEmpty = !recipeList.data.length;
   const getAdditionalParams = getLocalRecommendations(recipeList);
 
   return (
-    <section>
+    <section className={`${className} nailContent`}>
       <h1 className="visually-hidden">
         Healthy Recipe Collection - Quick Mediterranean, Vegetarian and High-Protein
         Meals Under 30 Minutes.
@@ -28,10 +32,17 @@ export const RecipesListSection = ({
       {isEmpty ? (
         <NotFoundByFilter />
       ) : (
-        <RecipesListComponent recipesList={recipeList.data} getAdditionalParams={getAdditionalParams} />
+        <RecipesListComponent
+          recipesList={recipeList.data}
+          getAdditionalParams={getAdditionalParams}
+        />
       )}
 
-      <PaginationComponent pagination={recipeList.pagination} params={params} />
+      <PaginationComponent
+        pagination={recipeList.pagination}
+        params={params}
+        route={route}
+      />
     </section>
   );
 };

@@ -1,0 +1,14 @@
+.favoriteSection {
+  padding: 48px 0;
+  text-align: center;
+
+  @media (min-width: $lg) {
+    padding: 80px 0;
+  }
+
+  & > h1 {
+    color: var(--color-text-primary);
+  }
+}
+
+

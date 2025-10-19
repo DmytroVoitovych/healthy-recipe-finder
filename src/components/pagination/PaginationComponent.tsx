@@ -13,9 +13,10 @@ const rightArrow = "→";
 interface PaginationProps {
   pagination: RecipeResponse["pagination"];
   params: FetchRecipesParams;
+  route?: '/recipes' | '/favorite';
 }
 
-export const PaginationComponent = ({ pagination, params }: PaginationProps) => {
+export const PaginationComponent = ({ pagination, params,route}: PaginationProps) => {
   const { page: currentPage, totalPages, hasPrev, hasNext } = pagination;
 
   const { page, ...rest } = params;
@@ -27,6 +28,8 @@ export const PaginationComponent = ({ pagination, params }: PaginationProps) => 
   const buildedLink = urlParams ? `?${urlParams}` : "";
   const buildedLinkWithPage = urlParams ? `&${urlParams}` : "";
 
+  if (!showPagination) return null;
+
   return (
     <nav aria-label="Pagination Navigation" className={styles.pagination}>
       <SmoothPaginationScroll page={currentPage} />
@@ -35,8 +38,8 @@ export const PaginationComponent = ({ pagination, params }: PaginationProps) => 
           content={leftArrow}
           link={
             firstBased === 1
-              ? `/recipes${buildedLink}`
-              : `/recipes?page=${firstBased - 1}${buildedLinkWithPage}`
+              ? `${route}${buildedLink}`
+              : `${route}?page=${firstBased - 1}${buildedLinkWithPage}`
           }
           stylesClass={styles.arrowBtn}
           prefetch={false}
@@ -45,34 +48,33 @@ export const PaginationComponent = ({ pagination, params }: PaginationProps) => 
           rel="prev"
         />
       )}
-      {showPagination && (
-        <ul>
-          {pageNumbers.map((pageNum, i) => {
-            const hasGap = i > 0 && pageNum - pageNumbers[i - 1] > 1;
-            return (
-              <li key={pageNum} {...(hasGap && { "data-page-gap": "" })}>
-                <Link
-                  href={
-                    pageNum === 1
-                      ? `/recipes${buildedLink}`
-                      : `/recipes?page=${pageNum}${buildedLinkWithPage}`
-                  }
-                  aria-label={`Go to page ${pageNum}`}
-                  aria-current={pageNum === firstBased ? "page" : undefined}
-                  prefetch={false}
-                  scroll={false}
-                >
-                  {pageNum}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      )}
+      <ul>
+        {pageNumbers.map((pageNum, i) => {
+          const hasGap = i > 0 && pageNum - pageNumbers[i - 1] > 1;
+          return (
+            <li key={pageNum} {...(hasGap && { "data-page-gap": "" })}>
+              <Link
+                href={
+                  pageNum === 1
+                    ? `${route}${buildedLink}`
+                    : `${route}?page=${pageNum}${buildedLinkWithPage}`
+                }
+                aria-label={`Go to page ${pageNum}`}
+                aria-current={pageNum === firstBased ? "page" : undefined}
+                prefetch={false}
+                scroll={false}
+              >
+                {pageNum}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+
       {hasNext && (
         <ButtonAsLink
           content={rightArrow}
-          link={`/recipes?page=${firstBased + 1}${buildedLinkWithPage}`}
+          link={`${route}?page=${firstBased + 1}${buildedLinkWithPage}`}
           stylesClass={styles.arrowBtn}
           prefetch={false}
           scroll={false}

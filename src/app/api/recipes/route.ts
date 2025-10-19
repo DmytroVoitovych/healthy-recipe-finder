@@ -4,9 +4,8 @@ import { filterRecipes } from "@/utils/routerHelpers/filterRecipes";
 import { NextRequest, NextResponse } from "next/server";
 import { CACHE_CONTROL_HEADER } from "../casheConfig";
 import { getRandomIds } from "@/utils/routerHelpers/getRandomIds";
-
-const PAGE_SIZE = 8;
-const MAX_QUERY_LENGTH = 200;
+import { createPaginationFromData } from "@/utils/routerHelpers/createPaginationFromData";
+import { MAX_QUERY_LENGTH, PAGE_SIZE } from "@/utils/constants";
 
 export async function GET(req: NextRequest) {
   try {
@@ -47,12 +46,11 @@ export async function GET(req: NextRequest) {
     const filtered = filterRecipes(search, prepTime, cookTime, diets, recipesMap);
     const randomIds = getRandomIds(recipesMap);
 
-    const total = filtered.length;
-    const totalPages = Math.ceil(total / PAGE_SIZE);
-    const startIndex = page * PAGE_SIZE;
-    const endIndex = Math.min(startIndex + PAGE_SIZE, total);
-
-    const paginated = filtered.slice(startIndex, endIndex);
+    const { paginated, totalPages, total } = createPaginationFromData(
+      PAGE_SIZE,
+      page,
+      filtered
+    );
 
     const response: RecipeResponse = {
       data: paginated,
