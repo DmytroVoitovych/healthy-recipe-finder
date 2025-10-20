@@ -1,12 +1,57 @@
-.favoriteItemsDisapeard li:has([aria-pressed="false"]) {
-  display: none;
-  opacity: 0;
-  scale: 0.1;
-  transition: scale 250ms ease-in-out 250ms, opacity 250ms ease-in-out 250ms,
-    display 250ms allow-discrete 250ms;
+.favoriteItemsDisapeard {
+  & li:has([aria-pressed="false"]) {
+    display: none;
+    opacity: 0;
+    scale: 0.1;
+    transition: scale 250ms ease-in-out 250ms, opacity 250ms ease-in-out 250ms,
+      display 250ms allow-discrete 250ms;
 
-  @starting-style {
-    opacity: 1;
-    scale: 1;
+    @starting-style {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+
+  @media (min-width: $md) {
+    &
+      li:has([aria-pressed="true"])
+      :nth-child(1 of li:has([aria-pressed="true"]))
+      :nth-last-child(1 of li:has([aria-pressed="true"])) {
+      width: fit-content;
+      max-width: calc(100vw / 2);
+      place-self: center;
+
+      @media (min-width: $lg) {
+        max-width: calc(100vw / 3);
+      }
+    }
+
+    @supports (-moz-user-select: none) {
+      &
+        li:has([aria-pressed="true"]):not(:last-child):not(
+          :has(~ li [aria-pressed="true"])
+        ) {
+        width: fit-content;
+        max-width: calc(100vw / 2);
+        place-self: center;
+
+        @media (min-width: $lg) {
+          max-width: calc(100vw / 3);
+        }
+      }
+      &
+        li:has([aria-pressed="false"])
+        ~ li:has([aria-pressed="true"]):not(
+          :has(~ li [aria-pressed="true"])
+        ):last-child {
+        width: fit-content;
+        max-width: calc(100vw / 2);
+        place-self: center;
+
+        @media (min-width: $lg) {
+          max-width: calc(100vw / 3);
+        }
+      }
+    }
   }
 }

@@ -1,5 +1,5 @@
 import { createElement, ReactNode, useEffect, useRef, useState } from "react";
-import { flushSync } from "react-dom";
+import { createPortal, flushSync } from "react-dom";
 
 interface ToastConfig {
   containerClass?: string;
@@ -116,14 +116,17 @@ export const useSimpleToast = (
 
   return {
     list: list.length ? (
-      <div
-        {...(containerClass ? {} : { style: fallbackClass })}
-        className={containerClass}
-        ref={toastRef}
-        popover="manual"
-      >
-        {list}
-      </div>
+      createPortal(
+        <div
+          {...(containerClass ? {} : { style: fallbackClass })}
+          className={containerClass}
+          ref={toastRef}
+          popover="manual"
+        >
+          {list}
+        </div>,
+        document.body
+      )
     ) : (
       <></>
     ),

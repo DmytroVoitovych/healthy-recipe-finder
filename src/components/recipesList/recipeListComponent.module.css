@@ -17,6 +17,16 @@
     auto-fit,
     minmax(max(var(--grid-col-min-size-calc), var(--grid-col-size-calc)), 1fr)
   );
+
+  & li:first-child:not(:has(+ li)) {
+    width: fit-content;
+    max-width: calc(100vw / 2);
+    place-self: center;
+
+    @media (min-width: $lg) {
+      max-width: calc(100vw / 3);
+    }
+  }
 }
 
 .viewRecipeBtn {

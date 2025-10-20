@@ -80,12 +80,20 @@ export default function Favorite(props: { searchParams: SearchParams }) {
     router.replace(path);
   }, [zerobased, total, params, router]);
 
+  const refreshControl = useCallback(() => {
+    const isRefresh =
+      Math.ceil(Object.keys(getFavorites(KEY)).length / 8) < totalPages;
+    if (isRefresh) router.refresh();
+  }, [totalPages, router]);
+
   useEffect(() => {
     const interceptStorageSignal = (e: CustomEvent) => {
       const id = e.detail.value;
       paginationSyncCopy.current = paginationSyncCopy.current.filter(
         (e) => e.id !== +id
       );
+
+      if (paginationSyncCopy.current.length) refreshControl();
       if (!paginationSyncCopy.current.length) redirect();
     };
 
@@ -99,7 +107,7 @@ export default function Favorite(props: { searchParams: SearchParams }) {
         "localstorage-signal",
         interceptStorageSignal as EventListener
       );
-  }, [redirect]);
+  }, [redirect, refreshControl]);
 
   return (
     <>

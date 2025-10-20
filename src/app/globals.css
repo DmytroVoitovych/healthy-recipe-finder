@@ -335,3 +335,8 @@ footer {
     opacity: 0;
   }
 }
+
+
+[aria-current="page"]{
+pointer-events: none;  
+}
