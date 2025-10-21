@@ -52,7 +52,7 @@ describe("BaseMenuOptionSelect", () => {
   });
 
   it("calls clearField when Clear button is clicked", () => {
-    render(<BaseMenuOptionSelect {...defaultProps} />);
+    render(<BaseMenuOptionSelect {...defaultProps} checkedValue="5 minutes" />);
     const clearButton = screen.getByRole("button", {
       name: /clear max prep time selection/i,
     });

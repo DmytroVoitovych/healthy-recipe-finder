@@ -27,6 +27,7 @@ export const BaseMenuOptionSelect = ({
   checkedValue,
 }: BaseMenuOptionSelectProps) => {
   const elementRef = useRef<HTMLButtonElement>(null);
+
   const {
     setElementRect,
     bottom = 0,

@@ -1,6 +1,7 @@
 import fs from "fs/promises";
 import path from "path";
-import type { Recipe, SpoonacularSearchResponse } from "@/lib/api/fetchRecipesTypes";
+import type { Recipe } from "@/lib/api/fetchRecipesTypes";
+import { fetchRecipesFromAPI } from "./fetchRecipesFromAPI";
 
 export const recipesMap = new Map<string, Recipe>();
 
@@ -75,77 +76,6 @@ const saveToCache = async (recipes: Recipe[]): Promise<void> => {
   }
 };
 
-const fetchWithRetry = async (url: string): Promise<Response> => {
-  const API_KEYS = [
-    process.env.SPOONACULAR_API_KEY,
-    process.env.SPOONACULAR_API_KEY_2,
-    process.env.SPOONACULAR_API_KEY_3,
-  ];
-
-  for (let i = 0; i < API_KEYS.length; i++) {
-    const key = API_KEYS[i];
-
-    const res = await fetch(url, {
-      headers: { "x-api-key": key || "" },
-    });
-
-    if (res.ok) return res;
-
-    if (res.status === 402 || res.status === 401) {
-      console.warn(
-        `⚠️ API key rate limited or invalid (${res.status}) on key API_KEY_#${
-          i + 1
-        }, trying next...`
-      );
-      continue;
-    }
-
-    return res;
-  }
-
-  throw new Error("All API keys are rate limited or invalid");
-};
-
-const fetchRecipesFromAPI = async (): Promise<Recipe[]> => {
-  const allRecipes: Recipe[] = [];
-  const totalRequests = 10;
-  const pageSize = 100;
-
-  console.log("🌐 Fetching recipes from Spoonacular API...");
-
-  for (let page = 0; page < totalRequests; page++) {
-    const offset = page * pageSize;
-    const url =
-      `${process.env.SPOONACULAR_BASE_URL}?` +
-      `maxCalories=600&sort=healthiness&offset=${offset}&number=${pageSize}` +
-      `&addRecipeInformation=true&fillIngredients=true&addRecipeInstructions=true`;
-
-    try {
-      console.log(
-        `📡 Fetching page ${page + 1}/${totalRequests} (offset: ${offset})`
-      );
-
-      const res = await fetchWithRetry(url);
-
-      if (!res?.ok) {
-        console.error(`❌ Failed to fetch page ${page + 1}:`, res.statusText);
-        continue;
-      }
-
-      const data: SpoonacularSearchResponse = await res.json();
-
-      if (data?.results && data?.results?.length > 0) {
-        allRecipes.push(...data.results);
-        console.log(`✅ Page ${page + 1}: loaded ${data.results.length} recipes`);
-      } else console.log(`⚠️ Page ${page + 1}: no results returned`);
-    } catch (error) {
-      console.error(`❌ Error fetching page ${page + 1}:`, error);
-    }
-  }
-
-  return allRecipes;
-};
-
 const populateRecipesMap = (recipes: Recipe[]): void => {
   recipesMap.clear();
 
@@ -185,4 +115,7 @@ if (typeof window !== "undefined") {
   throw new Error("🚨 preloadRecipes.ts must not be imported in client code!");
 }
 
-export const preloadPromise = preloadRecipes();
+export const preloadPromise =
+  process.env.NODE_ENV !== "test" && typeof window === "undefined"
+    ? preloadRecipes()
+    : undefined;

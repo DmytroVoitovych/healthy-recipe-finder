@@ -14,9 +14,9 @@
 
   @media (min-width: $md) {
     &
-      li:has([aria-pressed="true"])
-      :nth-child(1 of li:has([aria-pressed="true"]))
-      :nth-last-child(1 of li:has([aria-pressed="true"])) {
+      li:has([aria-pressed="true"]):nth-child(
+        1 of li:has([aria-pressed="true"])
+      ):nth-last-child(1 of li:has([aria-pressed="true"])) {
       width: fit-content;
       max-width: calc(100vw / 2);
       place-self: center;
