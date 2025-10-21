@@ -50,6 +50,7 @@ export const useGetCoordinateForPopup = (
     const resizeObserver = new ResizeObserver(forceUpdateRect);
     if (elementRef.current) resizeObserver.observe(document.body);
     return () => resizeObserver.disconnect();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [elementRef]);
 
   return {

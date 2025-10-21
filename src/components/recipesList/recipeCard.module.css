@@ -20,6 +20,17 @@
     max-height: 450px;
     aspect-ratio: 2 / 1.75;
     border-radius: 10px;
+    filter: none;
+    scale: 1;
+    transition: filter 250ms ease-in-out, scale 250ms ease-in-out;
+    position: relative;
+  }
+
+  @media (hover: hover) {
+    & img:hover {
+      filter: drop-shadow(2px 4px 6px var(--color-text-primary));
+      transform: scale(1.01);
+    }
   }
 
   & > :not(:last-child) {
@@ -51,5 +62,3 @@
     }
   }
 }
-
-

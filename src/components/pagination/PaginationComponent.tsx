@@ -19,6 +19,7 @@ interface PaginationProps {
 export const PaginationComponent = ({ pagination, params,route}: PaginationProps) => {
   const { page: currentPage, totalPages, hasPrev, hasNext } = pagination;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { page, ...rest } = params;
   const showPagination = totalPages > 1;
   const firstBased = currentPage + 1;

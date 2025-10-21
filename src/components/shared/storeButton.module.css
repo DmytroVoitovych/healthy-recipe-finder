@@ -3,6 +3,7 @@
   position: absolute;
   fill: var(--color-text-primary);
   stroke: var(--color-background-primary);
+  z-index: 1;
 }
 
 @keyframes toastSlideInOut {

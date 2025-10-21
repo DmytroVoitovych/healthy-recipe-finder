@@ -80,6 +80,7 @@ const ArtDirectionImageContent: FC<ArtDirectionImageProps> = ({
     src: srcMobileJpg, // ← fallback
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const {src, ...base} = rest;
 
   return (
@@ -97,6 +98,7 @@ const ArtDirectionImageContent: FC<ArtDirectionImageProps> = ({
       <source media="(max-width: 639.9px)" srcSet={mobile} type="image/jpeg" />
       <img
         {...base}
+        alt={altContent}
         src={desktop}
         style={{ width: "100%", height: "auto", objectFit:'cover' }}
         loading='lazy'

@@ -42,7 +42,7 @@ const nextConfig: NextConfig = {
     },
   },
   experimental: {
-     viewTransition: true,
+    viewTransition: true,
   },
 };
 

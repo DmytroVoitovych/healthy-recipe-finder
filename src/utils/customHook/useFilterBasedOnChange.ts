@@ -66,6 +66,7 @@ export const useFilterBasedOnChange = (fields: Record<string, string>) => {
       window.removeEventListener("popstate", handlePopState);
       history.scrollRestoration = "auto";
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const urlChangeAction = (key: "set" | "delete", field: string, value: string) => {

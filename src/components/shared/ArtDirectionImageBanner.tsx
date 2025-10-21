@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC} from "react";
 import { getImageProps } from "next/image";
 
 export interface ArtDirectionImageProps {
@@ -11,6 +11,7 @@ export interface ArtDirectionImageProps {
   srcMobileJpg: string;
   srcMobileWebP: string;
 }
+
 
 const ArtDirectionImageBanner: FC<ArtDirectionImageProps> = ({
   className,
@@ -91,6 +92,7 @@ const ArtDirectionImageBanner: FC<ArtDirectionImageProps> = ({
     src: srcMobileJpg, // ← fallback
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { src, ...base } = rest;
 
   return (
@@ -104,10 +106,16 @@ const ArtDirectionImageBanner: FC<ArtDirectionImageProps> = ({
       <source media="(max-width: 639.9px)" srcSet={mobileWebP} type="image/webp" />
 
       <source media="(min-width: 1200px)" srcSet={desktop} type="image/jpeg" />
-      <source media="(min-width: 640px) and (max-width: 1199px)" srcSet={tablet} type="image/jpeg" />
+      <source
+        media="(min-width: 640px) and (max-width: 1199px)"
+        srcSet={tablet}
+        type="image/jpeg"
+      />
       <source media="(max-width: 639.9px)" srcSet={mobile} type="image/jpeg" />
+
       <img
         {...base}
+        alt={altContent}
         src={desktop}
         style={{ width: "100%", height: "auto", objectFit: "cover" }}
         fetchPriority="high"
