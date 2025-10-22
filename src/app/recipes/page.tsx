@@ -1,9 +1,10 @@
 import { RecipesExploreSection } from "@/components/recipesExplore/RecipesExploreSection";
 import { RecipesListSection } from "@/components/recipesList/RecipesListSection";
 import { fetchRecipes, FetchRecipesParams } from "@/lib/api/fetchRecipes";
+import { Metadata } from "next";
 
 
-export const metadata = {
+export const metadata:Metadata = {
   title: "All Healthy Recipes",
   description: "Browse a wide collection of healthy recipes with nutrition facts, ingredients, and step-by-step instructions.",
 };

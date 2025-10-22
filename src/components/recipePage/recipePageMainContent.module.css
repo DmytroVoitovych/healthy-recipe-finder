@@ -23,6 +23,7 @@
 
     & img {
       grid-row: 1 / var(--grid-amount);
+      margin: 0;
     }
   }
 
@@ -37,10 +38,11 @@
       max-width: 704px;
       max-height: 704px;
       margin: 0 auto;
+      margin-bottom: 40px;
     }
   }
 
-  & > img ~ :not(:last-child) {
+  &  > img ~ :not(:last-child) {
     margin-bottom: 20px;
   }
 

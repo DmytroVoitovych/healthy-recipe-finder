@@ -1,6 +1,11 @@
 import type { NextConfig } from "next";
 import path from "path";
 
+export const HTML_LIMITED_BOT_UA_RE =
+  process.env.META_STREAM_LOCAL === "local"
+    ? /.*/
+    : /[\w-]+-Google|Google-[\w-]+|Bingbot|facebookexternalhit/i;
+
 const nextConfig: NextConfig = {
   /* config options here */
 
@@ -18,7 +23,7 @@ const nextConfig: NextConfig = {
     });
     return config;
   },
-
+  htmlLimitedBots: HTML_LIMITED_BOT_UA_RE,
   images: {
     qualities: [75, 80, 85, 100],
     deviceSizes: [360, 640, 768, 1024, 1280, 1600],
@@ -44,6 +49,7 @@ const nextConfig: NextConfig = {
     },
   },
   experimental: {
+    optimizePackageImports: ["next"],
     viewTransition: true,
   },
 };

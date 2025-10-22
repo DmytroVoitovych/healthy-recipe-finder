@@ -4,6 +4,8 @@
   height: 100%;
 }
 
+
+
 .recipeCardSection {
   display: flex;
   flex-direction: column;
@@ -16,13 +18,12 @@
 
   & img {
     width: 100%;
-    height: auto;
-    max-height: 450px;
-    aspect-ratio: 2 / 1.75;
-    border-radius: 10px;
+    height: 100%;
+    object-fit: cover;
     filter: none;
     scale: 1;
-    transition: filter 250ms ease-in-out, scale 250ms ease-in-out;
+    transition: filter 250ms ease-in-out, scale 250ms ease-in-out, object-fit 250ms ease-in-out;
+    border-radius: 10px;
     position: relative;
   }
 
@@ -30,6 +31,7 @@
     & img:hover {
       filter: drop-shadow(2px 4px 6px var(--color-text-primary));
       transform: scale(1.01);
+      object-fit: fill;
     }
   }
 

@@ -19,9 +19,9 @@ export const RecipesListComponent = ({
   return (
     <>
       <ul className={styles.recipesList}>
-        {recipesList.map((recipe) => (
+        {recipesList.map((recipe,i) => (
           <li key={recipe.id}>
-            <RecipeCard recipe={recipe}>
+            <RecipeCard recipe={recipe} index={i}>
               <ButtonAsLink
                 content="View Recipe"
                 stylesClass={`${styles.viewRecipeBtn} text-preset-8`}
