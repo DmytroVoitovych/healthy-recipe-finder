@@ -4,6 +4,9 @@ import localFont from "next/font/local";
 import { Header } from "@/components/header/Header";
 import { Footer } from "@/components/footer/Footer";
 
+
+
+
 const nunitoSans = localFont({
   src: [
     {
@@ -17,6 +20,7 @@ const nunitoSans = localFont({
   ],
   variable: "--font-nunito-sans",
   display: "swap",
+  preload:false
 });
 
 const nunito = localFont({
@@ -29,6 +33,7 @@ const nunito = localFont({
   ],
   variable: "--font-nunito",
   display: "swap",
+  preload:false
 });
 
 const recoleta = localFont({
@@ -36,6 +41,7 @@ const recoleta = localFont({
   display: "swap",
   weight: "600",
   variable: "--font-recoleta-semibold",
+  preload:true
 });
 
 const siteUrl =

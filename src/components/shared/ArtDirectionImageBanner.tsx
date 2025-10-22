@@ -117,9 +117,11 @@ const ArtDirectionImageBanner: FC<ArtDirectionImageProps> = ({
         {...base}
         alt={altContent}
         src={desktop}
-        style={{ width: "100%", height: "auto", objectFit: "cover" }}
+        style={{ width: "100%", objectFit: "cover",height:'auto' }}
         fetchPriority="high"
         loading="eager"
+        decoding="async"
+        
       />
     </picture>
   );

@@ -102,6 +102,7 @@ const ArtDirectionImageContent: FC<ArtDirectionImageProps> = ({
         src={desktop}
         style={{ width: "100%", height: "auto", objectFit:'cover' }}
         loading='lazy'
+        decoding="async"
       />
     </picture>
   );
