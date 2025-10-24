@@ -74,6 +74,7 @@ const HeaderNavigation = ({ isVisible }: menuVisibility) => {
           className={isActive("/favorite")}
           href="/favorite"
           aria-current={pathname === "/favorite" ? "page" : undefined}
+          prefetch={true}
         >
           Favorite
         </Link>

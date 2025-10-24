@@ -54,4 +54,13 @@
       }
     }
   }
+
+  & > nav[aria-label="Pagination Navigation"] {
+    opacity: 1;
+    transition: opacity 0.4s ease-in-out;
+
+    @starting-style {
+      opacity: 0;
+    }
+  }
 }

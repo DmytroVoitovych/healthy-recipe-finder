@@ -1,0 +1,128 @@
+.loadingContainer {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.loadingGrid {
+  --grid-max-col-count: 3;
+  --grid-gap: 32px;
+
+  --grid-col-size-calc: calc(
+    (100% - var(--grid-gap) * var(--grid-max-col-count)) / var(--grid-max-col-count)
+  );
+  --grid-col-min-size-calc: 288px;
+
+  @media (min-width: 640px) {
+    --grid-col-min-size-calc: calc(768px / 2 - var(--grid-gap));
+  }
+
+  display: grid;
+  gap: var(--grid-gap);
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(max(var(--grid-col-min-size-calc), var(--grid-col-size-calc)), 1fr)
+  );
+
+  /* padding: 48px 0; */
+}
+
+.loadingCard {
+  border: 1px solid var(--color-border-light);
+  background-color: var(--color-background-primary);
+  box-shadow: var(--shadow-card);
+  border-radius: 10px;
+  padding: 8px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.loadingImage,
+.loadingTitle,
+.loadingTag {
+  background: linear-gradient(
+    110deg,
+    var(--color-background-tertiary) 8%,
+    var(--color-background-secondary) 18%,
+    var(--color-background-tertiary) 33%
+  );
+  background-size: 200% 100%;
+  animation: loadingShimmer 1.3s linear infinite;
+}
+
+.loadingImage {
+  aspect-ratio: 6 / 5;
+  border-radius: 10px;
+}
+
+.loadingTitle {
+  height: 18px;
+  width: 70%;
+  border-radius: 6px;
+}
+
+.loadingTags {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.loadingTag {
+  height: 14px;
+  border-radius: 4px;
+}
+
+@keyframes loadingShimmer {
+  0% {
+    background-position-x: 200%;
+  }
+  100% {
+    background-position-x: -200%;
+  }
+}
+
+.loadingForm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+
+  @media (min-width: 640px) {
+    flex-wrap: nowrap;
+  }
+
+  @media (min-width: 1024px) {
+    gap: 16px;
+  }
+}
+
+.loadingFilter {
+  flex: 1 1 160px;
+  height: 44px;
+  border-radius: 10px;
+  background: linear-gradient(
+    110deg,
+    var(--color-background-tertiary) 8%,
+    var(--color-background-secondary) 18%,
+    var(--color-background-tertiary) 33%
+  );
+  background-size: 200% 100%;
+  animation: loadingShimmer 1.3s linear infinite;
+}
+
+.loadingSearch {
+  flex: 2 1 280px;
+  height: 44px;
+  border-radius: 10px;
+  background: linear-gradient(
+    110deg,
+    var(--color-background-tertiary) 8%,
+    var(--color-background-secondary) 18%,
+    var(--color-background-tertiary) 33%
+  );
+  background-size: 200% 100%;
+  animation: loadingShimmer 1.3s linear infinite;
+}

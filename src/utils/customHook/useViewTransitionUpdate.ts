@@ -28,7 +28,7 @@ export const useViewTransitionUpdate = (params: FetchRecipesParams) => {
     return () => window.removeEventListener("popstate", handlePop);
   }, []);
 
-  const result = historyEvent.current ? "auto" : update;
+  const result = historyEvent.current ? "none" : update;
 
   useEffect(() => {// reset
     historyEvent.current = false;

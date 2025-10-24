@@ -47,7 +47,6 @@ export const RecipeCard = ({
   const cookTimeInfoData = { readyInMinutes, preparationMinutes, cookingMinutes };
   const imgProps = className ? imageSizeProps.page : imageSizeProps.card;
 
-
   const imageEl = (
     <Image
       alt={title + "healthy recipe"}
@@ -55,8 +54,9 @@ export const RecipeCard = ({
       {...imgProps}
       quality="100"
       itemProp="image"
-      {...(index === 0?{priority:true}:{})}
-       {...(index ?{loading:'lazy'}:{})}
+      {...(index === 0 ? { priority: true } : {})}
+      {...(index ? { loading: "lazy" } : {})}
+      
     />
   );
 

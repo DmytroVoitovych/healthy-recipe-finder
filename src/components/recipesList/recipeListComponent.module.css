@@ -17,6 +17,7 @@
     auto-fit,
     minmax(max(var(--grid-col-min-size-calc), var(--grid-col-size-calc)), 1fr)
   );
+  
 
   & li:first-child:not(:has(+ li)) {
     width: fit-content;

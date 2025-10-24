@@ -13,10 +13,14 @@ const rightArrow = "→";
 interface PaginationProps {
   pagination: RecipeResponse["pagination"];
   params: FetchRecipesParams;
-  route?: '/recipes' | '/favorite';
+  route?: "/recipes" | "/favorite";
 }
 
-export const PaginationComponent = ({ pagination, params,route}: PaginationProps) => {
+export const PaginationComponent = ({
+  pagination,
+  params,
+  route,
+}: PaginationProps) => {
   const { page: currentPage, totalPages, hasPrev, hasNext } = pagination;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
