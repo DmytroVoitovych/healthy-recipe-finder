@@ -2,8 +2,11 @@ import styles from "./loading.module.css";
 
 export default function Loading() {
   return (
-    <section aria-busy="true" aria-label="Loading recipes section" className={styles.loadingContainer}>
-      {/* === Форма (4 блока, как на скрине) === */}
+    <section
+      aria-busy="true"
+      aria-label="Loading recipes section"
+      className={styles.loadingContainer}
+    >
       <form className={styles.loadingForm} aria-hidden="true">
         <div className={styles.loadingFilter} />
         <div className={styles.loadingFilter} />
@@ -11,7 +14,6 @@ export default function Loading() {
         <div className={styles.loadingSearch} />
       </form>
 
-      {/* === Скелетон карточек === */}
       <div className={styles.loadingGrid}>
         {Array.from({ length: 8 }).map((_, i) => (
           <div key={i} className={styles.loadingCard}>

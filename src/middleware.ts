@@ -18,11 +18,9 @@ export async function middleware() {
       });
   }
 
-  await preloadPromise;
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/recipes/:path*", "/api/recipes/:path*"],
   runtime: "nodejs", // 'edge' doesn't support fs module
 };

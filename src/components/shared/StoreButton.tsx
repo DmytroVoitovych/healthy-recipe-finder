@@ -5,7 +5,7 @@ import { Recipe } from "@/lib/api/fetchRecipesTypes";
 import { useEffect, useState } from "react";
 import { getFavorites } from "@/lib/api/getFavorites";
 import { useSimpleToast } from "@/utils/customHook/useSimpleToast";
-import { setLocalStorageSignal } from "@/utils/сustomEvents/setLocalStorageSignal";
+import { setLocalStorageSignal } from "@/utils/customEvents/setLocalStorageSignal";
 
 interface StoreButtonProps {
   id: string;
