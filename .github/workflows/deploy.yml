@@ -1,0 +1,32 @@
+name: Deploy to Oracle VM
+
+on:
+  push:
+    branches:
+      - main   
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to server via SSH
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /home/ubuntu/app
+            echo "🔁 Pulling latest code..."
+            git pull
+            echo "📦 Installing deps..."
+            npm install --omit=dev
+            echo "🏗️ Building Next.js..."
+            npm run build
+            echo "🚀 Restarting service..."
+            sudo systemctl restart nextjs
+            echo "✅ Done! Deployed successfully."
