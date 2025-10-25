@@ -13,7 +13,7 @@ import styles from "./page.module.css";
 import { useRouter } from "next/navigation";
 import { filterRecipes } from "@/utils/routerHelpers/filterRecipes";
 import { useViewTransitionUpdate } from "@/utils/customHook/useViewTransitionUpdate";
-import Loading from "../../components/loading";
+import Loading from "../../components/favoritePage/loading/loading";
 
 export type SearchParams = Promise<FetchRecipesParams>;
 
