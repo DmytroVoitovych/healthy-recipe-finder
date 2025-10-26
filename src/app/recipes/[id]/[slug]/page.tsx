@@ -9,7 +9,7 @@ export async function generateMetadata(
   props: PageProps<"/recipes/[id]/[slug]">,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const { id } = await props.params;
+  const { id, slug } = await props.params;
 
   const data = await fetchRecipeById(id);
 
@@ -44,6 +44,9 @@ export async function generateMetadata(
         },
         ...previousImages,
       ],
+    },
+    alternates: {
+      canonical: `/recipes/${id}/${slug}`,
     },
   };
 }

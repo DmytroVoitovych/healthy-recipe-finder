@@ -3,9 +3,7 @@ import "./globals.css";
 import localFont from "next/font/local";
 import { Header } from "@/components/header/Header";
 import { Footer } from "@/components/footer/Footer";
-
-
-
+import Providers from "./providers";
 
 const nunitoSans = localFont({
   src: [
@@ -20,7 +18,7 @@ const nunitoSans = localFont({
   ],
   variable: "--font-nunito-sans",
   display: "swap",
-  preload:false
+  preload: false,
 });
 
 const nunito = localFont({
@@ -33,7 +31,7 @@ const nunito = localFont({
   ],
   variable: "--font-nunito",
   display: "swap",
-  preload:false
+  preload: false,
 });
 
 const recoleta = localFont({
@@ -41,11 +39,10 @@ const recoleta = localFont({
   display: "swap",
   weight: "600",
   variable: "--font-recoleta-semibold",
-  preload:true
+  preload: true,
 });
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -72,9 +69,10 @@ export const metadata: Metadata = {
     locale: "en_US",
   },
   robots: "index, follow",
+  alternates: {
+    canonical: "/",
+  },
 };
-
-
 
 export default function RootLayout({
   children,
@@ -86,11 +84,13 @@ export default function RootLayout({
       <body
         className={`${nunito.variable} ${nunitoSans.variable} ${recoleta.variable}`}
       >
-        <div className="wrapper">
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </div>
+        <Providers>
+          <div className="wrapper">
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </div>
+        </Providers>
       </body>
     </html>
   );

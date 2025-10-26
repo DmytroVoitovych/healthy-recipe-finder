@@ -8,8 +8,10 @@ import { unstable_ViewTransition as ViewTransition } from "react";
 export const metadata = {
   title: "About",
   description: "Learn about Healthy Recipes Finder and our mission.",
+  alternates: {
+    canonical: "/about",
+  },
 };
-
 
 export default function About() {
   return (
