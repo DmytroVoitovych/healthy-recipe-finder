@@ -27,6 +27,8 @@ jobs:
             npm install --omit=dev
             echo "🏗️ Building Next.js..."
             npm run build
-            echo "🚀 Restarting service..."
+            echo "🔄 Reloading Nginx cache..."
+            sudo systemctl reload nginx
+            echo "🚀 Restarting Next.js service..."
             sudo systemctl restart nextjs
             echo "✅ Done! Deployed successfully."
