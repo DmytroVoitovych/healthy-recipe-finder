@@ -21,14 +21,24 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd /home/ubuntu/app
-            echo "🔁 Pulling latest code..."
-            git pull
+            echo "🔁 Fetching latest code..."
+            git fetch origin main
+            echo "🧹 Hard reset to origin/main..."
+            git reset --hard origin/main
+
             echo "📦 Installing deps..."
             npm install --omit=dev
+
             echo "🏗️ Building Next.js..."
             npm run build
-            echo "♻️ Restarting nginx-quic (HTTP/3)..."
-            sudo systemctl restart nginx-quic
-            echo "🚀 Restarting Next.js service..."
+
+            echo "🚀 Restarting app..."
             sudo systemctl restart nextjs
-            echo "✅ Done! Deployed successfully."
+
+            echo "🔄 Reloading Nginx (HTTP/3 build falls back to classic if absent)..."
+            sudo systemctl reload nginx-quic || sudo systemctl reload nginx || true
+
+            echo "🧪 Quick check:"
+            curl -sI https://healthy-recipe-finder.duckdns.org | head -n 1
+            echo "✅ Done"
+
