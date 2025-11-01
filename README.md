@@ -270,8 +270,8 @@ See below my css trick for detecting single active el among inactive:
       max-width: calc(100vw / 3);
     }
   }
-  
-@supports (-moz-user-select: none) {
+
+@supports not selector(:nth-child(1 of li)) {
       & li:has([aria-pressed="true"]):not(:has(~ li [aria-pressed="true"])) {
         width: fit-content;
         max-width: calc(100vw / 2);
@@ -289,26 +289,6 @@ See below my css trick for detecting single active el among inactive:
 
         @media (min-width: $lg) {
           max-width: none;
-        }
-      }
-
-      & li:first-child:has([aria-pressed="true"]):not(:has(~ li [aria-pressed="true"])) {
-        width: fit-content;
-        max-width: calc(100vw / 2);
-        place-self: center;
-
-        @media (min-width: $lg) {
-          max-width: calc(100vw / 3);
-        }
-      }
-
-      & li:last-child:has([aria-pressed="true"]):not(:has([aria-pressed="true"]) ~ li) {
-        width: fit-content;
-        max-width: calc(100vw / 2);
-        place-self: center;
-
-        @media (min-width: $lg) {
-          max-width: calc(100vw / 3);
         }
       }
     }
