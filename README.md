@@ -272,32 +272,36 @@ See below my css trick for detecting single active el among inactive:
   }
 
   @supports (-moz-user-select: none) {
-    &
-      li:has([aria-pressed="true"]):not(:last-child):not(
-        :has(~ li [aria-pressed="true"])
-      ) {
-      width: fit-content;
-      max-width: calc(100vw / 2);
-      place-self: center;
+      & li:first-child:has([aria-pressed="true"]):not(:has(~ li [aria-pressed="true"])) {
+        width: fit-content;
+        max-width: calc(100vw / 2);
+        place-self: center;
 
-      @media (min-width: $lg) {
-        max-width: calc(100vw / 3);
+        @media (min-width: $lg) {
+          max-width: calc(100vw / 3);
+        }
+      }
+
+      & li:has([aria-pressed="true"]) :not(:first-child) :not(:last-child) :not(:has(~ li [aria-pressed="true"])) :not(:has([aria-pressed="true"]) ~ li:last-child) {
+        width: fit-content;
+        max-width: calc(100vw / 2);
+        place-self: center;
+
+        @media (min-width: $lg) {
+          max-width: calc(100vw / 3);
+        }
+      }
+
+      & li:last-child:has([aria-pressed="true"]):not(:has([aria-pressed="true"]) ~ li) {
+        width: fit-content;
+        max-width: calc(100vw / 2);
+        place-self: center;
+
+        @media (min-width: $lg) {
+          max-width: calc(100vw / 3);
+        }
       }
     }
-    &
-      li:has([aria-pressed="false"])
-      ~ li:has([aria-pressed="true"]):not(
-        :has(~ li [aria-pressed="true"])
-      ):last-child {
-      width: fit-content;
-      max-width: calc(100vw / 2);
-      place-self: center;
-
-      @media (min-width: $lg) {
-        max-width: calc(100vw / 3);
-      }
-    }
-  }
 }
 ```
 

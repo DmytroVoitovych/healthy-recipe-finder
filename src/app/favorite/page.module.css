@@ -13,10 +13,7 @@
   }
 
   @media (min-width: $md) {
-    &
-      li:has([aria-pressed="true"]):nth-child(
-        1 of li:has([aria-pressed="true"])
-      ):nth-last-child(1 of li:has([aria-pressed="true"])) {
+    & li:has([aria-pressed="true"]):nth-child(1 of li:has([aria-pressed="true"])):nth-last-child(1 of li:has([aria-pressed="true"])) {
       width: fit-content;
       max-width: calc(100vw / 2);
       place-self: center;
@@ -27,10 +24,7 @@
     }
 
     @supports (-moz-user-select: none) {
-      &
-        li:has([aria-pressed="true"]):not(:last-child):not(
-          :has(~ li [aria-pressed="true"])
-        ) {
+      & li:first-child:has([aria-pressed="true"]):not(:has(~ li [aria-pressed="true"])) {
         width: fit-content;
         max-width: calc(100vw / 2);
         place-self: center;
@@ -39,11 +33,8 @@
           max-width: calc(100vw / 3);
         }
       }
-      &
-        li:has([aria-pressed="false"])
-        ~ li:has([aria-pressed="true"]):not(
-          :has(~ li [aria-pressed="true"])
-        ):last-child {
+
+      & li:has([aria-pressed="true"]) :not(:first-child) :not(:last-child) :not(:has(~ li [aria-pressed="true"])) :not(:has([aria-pressed="true"]) ~ li:last-child) {
         width: fit-content;
         max-width: calc(100vw / 2);
         place-self: center;
@@ -52,10 +43,22 @@
           max-width: calc(100vw / 3);
         }
       }
+
+      & li:last-child:has([aria-pressed="true"]):not(:has([aria-pressed="true"]) ~ li) {
+        width: fit-content;
+        max-width: calc(100vw / 2);
+        place-self: center;
+
+        @media (min-width: $lg) {
+          max-width: calc(100vw / 3);
+        }
+      }
+
+
     }
   }
 
-  & > nav[aria-label="Pagination Navigation"] {
+  &>nav[aria-label="Pagination Navigation"] {
     opacity: 1;
     transition: opacity 0.4s ease-in-out;
 
