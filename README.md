@@ -160,7 +160,7 @@ Lightweight client-side store synchronized across tabs:
 
 ## 📦 Open Source Contribution — `useSimplePagination`
 
-A custom React hook published on npm that generates adaptive pagination ranges for any dataset.
+A custom pure function published on npm that generates adaptive pagination ranges for any dataset.
 
 ```ts
 useSimplePagination(currentPage, totalPages, visibleButtons, shift?)
