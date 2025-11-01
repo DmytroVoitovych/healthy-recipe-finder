@@ -270,9 +270,9 @@ See below my css trick for detecting single active el among inactive:
       max-width: calc(100vw / 3);
     }
   }
-
-  @supports (-moz-user-select: none) {
-      & li:first-child:has([aria-pressed="true"]):not(:has(~ li [aria-pressed="true"])) {
+  
+@supports (-moz-user-select: none) {
+      & li:has([aria-pressed="true"]):not(:has(~ li [aria-pressed="true"])) {
         width: fit-content;
         max-width: calc(100vw / 2);
         place-self: center;
@@ -282,7 +282,17 @@ See below my css trick for detecting single active el among inactive:
         }
       }
 
-      & li:has([aria-pressed="true"]) :not(:first-child) :not(:last-child) :not(:has(~ li [aria-pressed="true"])) :not(:has([aria-pressed="true"]) ~ li:last-child) {
+      & li:has([aria-pressed="true"]):has(~ li [aria-pressed="true"])~li:has([aria-pressed="true"]) { 
+        width: auto;
+        max-width: none;
+        place-self: stretch;
+
+        @media (min-width: $lg) {
+          max-width: none;
+        }
+      }
+
+      & li:first-child:has([aria-pressed="true"]):not(:has(~ li [aria-pressed="true"])) {
         width: fit-content;
         max-width: calc(100vw / 2);
         place-self: center;
