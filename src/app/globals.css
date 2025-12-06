@@ -200,7 +200,7 @@ footer {
   & > ul > li > h2 {
     margin-bottom: 12px;
     display: inline-block;
-    vertical-align: super;
+    vertical-align: top;
     padding-left: 12px;
 
     @media (max-width: 374.9) {
